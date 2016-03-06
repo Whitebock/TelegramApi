@@ -2,7 +2,7 @@
 
 /**
  * Telegram Bot Api - PHP Wrapper
- * @version 0.8
+ * @version 0.9
  * @author Sven Drewniok <sven.drewniok@web.de>
  * @author Sven Drewniok @Whitebock
  * @todo Implement all api functions
@@ -20,6 +20,10 @@
    * @return object|bool
    */
   function parseClass($params, $asClass = null) {
+    
+      if(empty($params)){
+        return false;
+      }
     
       if (is_object($params)) {
           $params = (array)$params;

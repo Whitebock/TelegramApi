@@ -2,7 +2,7 @@
 
 /**
  * Telegram Bot Api - PHP Wrapper
- * @version 0.8
+ * @version 0.9
  * @author Sven Drewniok <sven.drewniok@web.de>
  * @author Sven Drewniok @Whitebock
  * @todo Implement all api functions
@@ -12,7 +12,7 @@ class Bot {
     private $token;
     private $url;
     const apiurl = 'https://api.telegram.org/bot';
-    public function Bot($token) {
+    public function __construct($token) {
         $this->token = $token;
         $this->url   = $this::apiurl . $this->token . '/';
     }
@@ -86,6 +86,27 @@ class Bot {
       $obj = $this->sendPOSTRequest($this->url . 'sendPhoto', $postdata);
       return parseClass($obj, 'Message');
     }
+  
+    /**
+     * @param int|string $chat_id Unique identifier for the target chat
+     * @param InputFile|string $sticker Sticker to send
+     * @param array $options [reply_to_message_id=>int, reply_markup=>ReplyKeyboardMarkup|ReplyKeyboardHide|ForceReply]
+     * @return Message The send Message object
+     */
+    public function sendSticker($chat_id, $sticker, $options = null) {
+      $postdata = array(
+        'chat_id' => $chat_id,
+        'sticker' => $sticker
+      );
+      
+      if(isset($options)){
+        $options = $this -> serializePOSTData($options);
+        $postdata = array_merge($postdata, $options);  
+      }
+        
+      $obj = $this->sendPOSTRequest($this->url . 'sendSticker', $postdata);
+      return parseClass($obj, 'Message');
+    }
     
     /**
      * @param int|string $chat_id Unique identifier for the target chat
@@ -139,6 +160,9 @@ class Bot {
         ));
         $json = curl_exec($curl);
         curl_close($curl);
+        if(empty($json)){
+          return false;
+        }
         if (empty(json_decode($json)->result)) {
             return json_decode($json)->ok;
         }
