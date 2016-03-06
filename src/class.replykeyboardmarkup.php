@@ -2,7 +2,7 @@
 
 /**
  * Telegram Bot Api - PHP Wrapper
- * @version 0.8
+ * @version 0.9
  * @author Sven Drewniok <sven.drewniok@web.de>
  * @author Sven Drewniok @Whitebock
  */
@@ -13,6 +13,6 @@
 		public $one_time_keyboard;
 		public $selective;
 		
-		public function ReplyKeyboardMarkup(){ }
+		public function __construct(){ }
 	}
 ?>
