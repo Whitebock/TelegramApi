@@ -1,5 +1,5 @@
 <?php
-	require_once('./TelegramBot/api.telegram.php');
+	require_once('./src/api.telegram.php');
 	$bot = new Bot('token');
 
 	if($_SERVER['REQUEST_METHOD'] == 'GET'){
