@@ -1,14 +1,41 @@
-# Telegram BotApi - PHP Wrapper
+## Telegram BotApi
 A PHP Wrapper for the [Telegram Bot Api](https://core.telegram.org/bots/api)
 
-**TODO:**
+###TODO:
 
 - [x] Bot Api 2.0
 - [ ] Complete bot functions
 - [ ] Add group administration
 - [ ] Inline mode
 
-# Changelog
+###DEMO:
+```php
+require_once('./src/api.telegram.php');
+$bot = new Bot('token');
+	
+if($_SERVER['REQUEST_METHOD'] == 'GET'){
+		
+	$me = $bot -> getMe();
+	echo 'ID: '.$me -> id.'<br>';
+	echo 'Username: '.$me -> username.'<br>';
+	echo 'Full Name: '.$me -> first_name.'<br>';
+	
+	//$obj = $bot -> setWebhook(array('url' => 'https://example.com/bot.demo.php'));
+	//$boolstring = ($obj) ? 'true' : 'false';
+	//echo 'Webhook set: '.$boolstring;
+}
+else if($_SERVER['REQUEST_METHOD'] == 'POST'){
+	$stream_data = file_get_contents('php://input');
+	$json = json_decode($stream_data);
+	$update = parseClass($json, 'Update');
+		
+	$userid = $update -> message -> chat -> id;
+		
+	$bot -> sendMessage($userid, 'DEMO');
+}
+```
+
+### CHANGELOG
 Version 1.0
 + support for api 2.0
 + all send functions
