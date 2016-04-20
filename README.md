@@ -1,4 +1,5 @@
-# Telegram Bot Api - PHP Wrapper
+# Telegram BotApi - PHP Wrapper
+A PHP Wrapper for the Telegram Bot Api
 ## Bot 2.0 compatible
 
 **TODO:**
