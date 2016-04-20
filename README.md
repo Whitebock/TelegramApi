@@ -1,11 +1,12 @@
 # Telegram BotApi - PHP Wrapper
-A PHP Wrapper for the Telegram Bot Api
-## Bot 2.0 compatible
+A PHP Wrapper for the [Telegram Bot Api](https://core.telegram.org/bots/api)
 
 **TODO:**
-1. Complete bot functions
-2. Add group administration
-3. Inline mode
+
+[x]Bot Api 2.0
+[ ]Complete bot functions
+[ ]Add group administration
+[ ]Inline mode
 
 # Changelog
 Version 1.0
