@@ -2,7 +2,7 @@
 
 /**
  * Telegram Bot Api - PHP Wrapper
- * @version 0.9
+ * @version 1.0
  * @author Sven Drewniok <sven.drewniok@web.de>
  * @author Sven Drewniok @Whitebock
  */
@@ -16,15 +16,19 @@
 		public $forward_date;
 		public $reply_to_message;
 		public $text;
+		public $entities;
 		public $audio;
 		public $document;
 		public $photo;
 		public $sticker;
 		public $video;
+		public $voice;
+		public $caption;
 		public $contact;
 		public $location;
-		public $new_chat_participant;
-		public $left_chat_participant;
+		public $venue;
+		public $new_chat_member;
+		public $left_chat_member;
 		public $new_chat_title;
 		public $new_chat_photo;
 		public $delete_chat_photo;
@@ -33,6 +37,7 @@
 		public $channel_chat_created;
 		public $migrate_to_chat_id;
 		public $migrate_from_chat_id;
+		public $pinned_message;
 		
 		public function __construct(){ }
 	}

@@ -7,13 +7,11 @@
  * @author Sven Drewniok @Whitebock
  */
 
-	class PhotoSize{
-		public $file_id;
-		public $width;
-		public $height;
-		public $file_size;
-	
+	class KeyboardButton{
+		public $text;
+		public $request_contact;
+		public $request_location;
+		
 		public function __construct(){ }
-	
 	}
 ?>

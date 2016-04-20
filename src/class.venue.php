@@ -7,13 +7,12 @@
  * @author Sven Drewniok @Whitebock
  */
 
-	class PhotoSize{
-		public $file_id;
-		public $width;
-		public $height;
-		public $file_size;
-	
+	class Venue{
+		public $location;
+		public $title;
+		public $address;
+		public $foursquare_id;
+		
 		public function __construct(){ }
-	
 	}
 ?>

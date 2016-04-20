@@ -7,13 +7,13 @@
  * @author Sven Drewniok @Whitebock
  */
 
-	class PhotoSize{
-		public $file_id;
-		public $width;
-		public $height;
-		public $file_size;
-	
+	class CallbackQuery{
+		public $id;
+		public $from;
+		public $message;
+		public $inline_message_id;
+		public $data;
+		
 		public function __construct(){ }
-	
 	}
 ?>

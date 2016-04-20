@@ -7,13 +7,12 @@
  * @author Sven Drewniok @Whitebock
  */
 
-	class PhotoSize{
-		public $file_id;
-		public $width;
-		public $height;
-		public $file_size;
-	
+	class MessageEntity{
+		public $type;
+		public $offset;
+		public $length;
+		public $url;
+		
 		public function __construct(){ }
-	
 	}
 ?>

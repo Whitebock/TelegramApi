@@ -7,13 +7,12 @@
  * @author Sven Drewniok @Whitebock
  */
 
-	class PhotoSize{
-		public $file_id;
-		public $width;
-		public $height;
-		public $file_size;
-	
+	class InlineKeyboardButton{
+		public $text;
+		public $url;
+		public $callback_data;
+		public $switch_inline_query;
+		
 		public function __construct(){ }
-	
 	}
 ?>
