@@ -3,10 +3,10 @@ A PHP Wrapper for the [Telegram Bot Api](https://core.telegram.org/bots/api)
 
 **TODO:**
 
-[x]Bot Api 2.0
-[ ]Complete bot functions
-[ ]Add group administration
-[ ]Inline mode
+- [x] Bot Api 2.0
+- [ ] Complete bot functions
+- [ ] Add group administration
+- [ ] Inline mode
 
 # Changelog
 Version 1.0
