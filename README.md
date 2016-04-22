@@ -1,14 +1,14 @@
 ## Telegram BotApi
 A PHP Wrapper for the [Telegram Bot Api](https://core.telegram.org/bots/api)
 
-###TODO:
+###TODO
 
 - [x] Bot Api 2.0
 - [ ] Complete bot functions
 - [ ] Add group administration
 - [ ] Inline mode
 
-###DEMO:
+###DEMO
 ```php
 require_once('./src/api.telegram.php');
 $bot = new Bot('token');
