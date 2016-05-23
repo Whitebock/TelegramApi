@@ -19,10 +19,6 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 	echo 'ID: '.$me -> id.'<br>';
 	echo 'Username: '.$me -> username.'<br>';
 	echo 'Full Name: '.$me -> first_name.'<br>';
-	
-	//$obj = $bot -> setWebhook(array('url' => 'https://example.com/bot.demo.php'));
-	//$boolstring = ($obj) ? 'true' : 'false';
-	//echo 'Webhook set: '.$boolstring;
 }
 else if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	$stream_data = file_get_contents('php://input');
@@ -35,6 +31,20 @@ else if($_SERVER['REQUEST_METHOD'] == 'POST'){
 }
 ```
 
+*GET UPDATES MANUALLY*
+```php
+$updates = $bot -> getUpdates();
+foreach($updates as $update){
+	echo $update -> message -> from -> username.':  '.$update -> message -> text.'<br>';
+}
+```
+
+*SET WEBHOOK*
+```php
+$obj = $bot -> setWebhook(array('url' => 'https://example.com/bot.demo.php'));
+$boolstring = ($obj) ? 'true' : 'false';
+echo 'Webhook set: '.$boolstring;
+```
 ### CHANGELOG
 Version 1.0
 + support for api 2.0
