@@ -8,10 +8,6 @@
 		echo 'ID: '.$me -> id.'<br>';
 		echo 'Username: '.$me -> username.'<br>';
 		echo 'Full Name: '.$me -> first_name.'<br>';
-
-		//$obj = $bot -> setWebhook(array('url' => 'https://example.com/bot.demo.php'));
-		//$boolstring = ($obj) ? 'true' : 'false';
-		//echo 'Webhook set: '.$boolstring;
 	}
 	else if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
