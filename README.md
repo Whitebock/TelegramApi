@@ -9,29 +9,20 @@ A PHP Wrapper for the [Telegram Bot Api](https://core.telegram.org/bots/api)
 - [ ] Inline mode
 
 ###DEMO
+
+**GET BOT OBJECT**
 ```php
 require_once('./src/api.telegram.php');
 $bot = new Bot('token');
-	
-if($_SERVER['REQUEST_METHOD'] == 'GET'){
-		
-	$me = $bot -> getMe();
-	echo 'ID: '.$me -> id.'<br>';
-	echo 'Username: '.$me -> username.'<br>';
-	echo 'Full Name: '.$me -> first_name.'<br>';
-}
-else if($_SERVER['REQUEST_METHOD'] == 'POST'){
-	$stream_data = file_get_contents('php://input');
-	$json = json_decode($stream_data);
-	$update = parseClass($json, 'Update');
-		
-	$userid = $update -> message -> chat -> id;
-		
-	$bot -> sendMessage($userid, 'DEMO');
-}
 ```
 
-*GET UPDATES MANUALLY*
+**GET ME**
+```php
+$me = $bot -> getMe();
+echo 'Username: '.$me -> username.'<br>';
+```
+
+**GET MANUAL UPDATES**
 ```php
 $updates = $bot -> getUpdates();
 foreach($updates as $update){
@@ -39,12 +30,21 @@ foreach($updates as $update){
 }
 ```
 
-*SET WEBHOOK*
+**SET WEBHOOK**
 ```php
 $obj = $bot -> setWebhook(array('url' => 'https://example.com/bot.demo.php'));
 $boolstring = ($obj) ? 'true' : 'false';
 echo 'Webhook set: '.$boolstring;
 ```
+
+**GET WEBHOOK UPDATES**
+```php
+$stream_data = file_get_contents('php://input');
+$json = json_decode($stream_data);
+
+$update = parseClass($json, 'Update');
+```
+
 ### CHANGELOG
 Version 1.0
 + support for api 2.0
