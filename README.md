@@ -46,6 +46,14 @@ $update = parseClass($json, 'Update');
 ```
 
 ### CHANGELOG
+Version 1.1
+* class.bot.php
+  + getUserProfilePhotos
+  + getFile
+* class.file.php
+  + download
+  + downloadTo
+
 Version 1.0
 + support for api 2.0
 + all send functions
