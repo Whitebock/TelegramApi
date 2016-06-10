@@ -2,19 +2,18 @@
 
 /**
  * Telegram Bot Api - PHP Wrapper
- * @version 1.0
+ * @version 1.1
  * @author Sven Drewniok <sven.drewniok@web.de>
  * @author Sven Drewniok @Whitebock
- * @todo Implement all api functions
  */
 
 class Bot {
     private $token;
     private $url;
-    const apiurl = 'https://api.telegram.org/bot';
+    const API_URL = 'https://api.telegram.org/';
     public function __construct($token) {
         $this->token = $token;
-        $this->url   = $this::apiurl . $this->token . '/';
+        $this->url   = $this::API_URL.'bot'.$this->token.'/';
     }
     
     /**
@@ -302,6 +301,37 @@ class Bot {
         $this->sendPOSTRequest($this->url . 'sendChatAction', $postdata);
     }
     
+    /**
+     * @param int $user_id Unique identifier of the target user
+     * @param array $options [offset=>int, limit=>int]
+     * @return UserProfilePhotos
+     */
+    public function getUserProfilePhotos($user_id, $options = null){
+      
+      $postdata = array('user_id' => $user_id);
+      if(isset($options))
+        $postdata = array_merge($postdata, $options);
+      
+      $obj = $this->sendPOSTRequest($this->url . 'getUserProfilePhotos', $postdata);
+      
+      return parseClass($obj, 'UserProfilePhotos');
+    }
+  
+    public function getFile($file_id){
+      $postdata = array('file_id' => $file_id);
+      $obj = $this->sendPOSTRequest($this->url . 'getFile', $postdata);
+      
+      if($obj === false)
+        return false;
+      
+      $file = new File($this::API_URL, $this -> token);
+      $file -> file_id = $obj -> file_id;
+      $file -> file_size = $obj -> file_size;
+      $file -> file_path = $obj -> file_path;
+      
+      return $file;
+    }
+  
     /**
      * @param array $options [offset=>int, limit=>int, timeout=>int]
      * @return Update[]
