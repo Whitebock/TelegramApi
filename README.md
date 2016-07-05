@@ -1,6 +1,8 @@
 ## Telegram BotApi
 A PHP Wrapper for the [Telegram Bot Api](https://core.telegram.org/bots/api)
 
+![Size](https://img.shields.io/badge/size-23.9Kb-blue.svg)
+
 ###TODO
 
 - [x] Bot Api 2.0
