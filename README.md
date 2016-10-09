@@ -1,7 +1,8 @@
 ## Telegram BotApi
 A PHP Wrapper for the [Telegram Bot Api](https://core.telegram.org/bots/api)
 
-![Size](https://img.shields.io/badge/size-46.9KB-blue.svg)
+<span ><a href="https://github.com/Whitebock/TelegramBot-ApiWrapper/tree/master/src" title="View Code"><img src="https://img.shields.io/badge/size-46.9KB-yellow.svg" alt="46.9KB small!" /></a></span>
+<span ><a href="https://www.paypal.me/SvenDrewniok" title="Donate"><img src="https://img.shields.io/badge/donate-paypal-blue.svg" alt="Donate on PayPal" /></a></span>
 
 ###TODO
 
