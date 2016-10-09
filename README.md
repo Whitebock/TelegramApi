@@ -9,6 +9,7 @@ A PHP Wrapper for the [Telegram Bot Api](https://core.telegram.org/bots/api)
 - [ ] Complete bot functions
 - [ ] Add group administration
 - [ ] Inline mode
+- [ ] Games
 
 ###DEMO
 
