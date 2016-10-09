@@ -1,6 +1,8 @@
 ## Telegram BotApi
 A PHP Wrapper for the [Telegram Bot Api](https://core.telegram.org/bots/api)
 
+![Size](https://img.shields.io/badge/size-46.9KB-blue.svg)
+
 ###TODO
 
 - [x] Bot Api 2.0
@@ -10,16 +12,38 @@ A PHP Wrapper for the [Telegram Bot Api](https://core.telegram.org/bots/api)
 
 ###DEMO
 
-**GET BOT OBJECT**
+**DEMO FILE**
 ```php
 require_once('./src/api.telegram.php');
 $bot = new Bot('token');
-```
 
-**GET ME**
-```php
-$me = $bot -> getMe();
-echo 'Username: '.$me -> username.'<br>';
+if($_SERVER['REQUEST_METHOD'] == 'GET'){
+
+	// Print out general information about this bot.
+	$me = $bot -> getMe();
+	echo 'ID: '.$me -> id.'<br>';
+	echo 'Username: '.$me -> username.'<br>';
+	echo 'Full Name: '.$me -> first_name.'<br>';
+
+}
+else if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+	// Get the raw data that has been send by telegram.
+	$stream_data = file_get_contents('php://input');
+
+	// Convert the raw data into JSON.
+	$json = json_decode($stream_data);
+
+	// Parse the JSON into an Update-object we can use.
+	$update = parseClass($json, 'Update');
+
+	// Get the id of the user who send a message to this bot.
+	$userid = $update -> message -> chat -> id;
+
+	// Replay to the user with a demo message.
+	$bot -> sendMessage($userid, 'DEMO');
+
+}
 ```
 
 **GET MANUAL UPDATES**
@@ -46,6 +70,20 @@ $update = parseClass($json, 'Update');
 ```
 
 ### CHANGELOG
+Version 1.2
++ class.chatmember.php
++ class.responseparameters.php
+* full phpDoc comments
+- removed closing php tag in pure php files
+
+Version 1.1
+* class.bot.php
+  + getUserProfilePhotos
+  + getFile
+* class.file.php
+  + download
+  + downloadTo
+
 Version 1.0
 + support for api 2.0
 + all send functions
