@@ -42,7 +42,7 @@ else if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	// Get the id of the user who send a message to this bot.
 	$userid = $update -> message -> chat -> id;
 
-	// Replay to the user with a demo message.
+	// Reply to the user with a demo message.
 	$bot -> sendMessage($userid, 'DEMO');
 
 }
