@@ -4,17 +4,15 @@ A PHP Wrapper for the [Telegram Bot Api](https://core.telegram.org/bots/api)
 <span ><a href="https://github.com/Whitebock/TelegramBot-ApiWrapper/tree/master/src" title="View Code"><img src="https://img.shields.io/badge/size-46.9KB-yellow.svg" alt="46.9KB small!" /></a></span>
 <span ><a href="https://www.paypal.me/SvenDrewniok" title="Donate"><img src="https://img.shields.io/badge/donate-paypal-blue.svg" alt="Donate on PayPal" /></a></span>
 
-###TODO
+### Todo
 
 - [x] Bot Api 2.0
-- [ ] Complete bot functions
+- [x] Complete send functions
 - [ ] Add group administration
 - [ ] Inline mode
 - [ ] Games
 
-###DEMO
-
-**DEMO FILE**
+### Demo
 ```php
 require_once('./src/api.telegram.php');
 $bot = new Bot('token');
@@ -47,6 +45,7 @@ else if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 }
 ```
+### Getting Updates
 
 **GET MANUAL UPDATES**
 ```php
@@ -71,7 +70,8 @@ $json = json_decode($stream_data);
 $update = parseClass($json, 'Update');
 ```
 
-### CHANGELOG
+### Changelog
+```
 Version 1.2
 + class.chatmember.php
 + class.responseparameters.php
@@ -140,3 +140,4 @@ Version 0.4
 + class.userprofilephotos.php
 + class.video.php
 + class.voice.php
+```
