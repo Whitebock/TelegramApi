@@ -1,31 +1,20 @@
 <?php
-require_once('./src/api.telegram.php');
-$bot = new Bot('token');
+require_once(__DIR__ . '/vendor/autoload.php');
 
-if($_SERVER['REQUEST_METHOD'] == 'GET'){
+use Whitebock\TelegramApi\Bot;
 
-	// Print out general information about this bot.
-	$me = $bot -> getMe();
-	echo 'ID: '.$me -> id.'<br>';
-	echo 'Username: '.$me -> username.'<br>';
-	echo 'Full Name: '.$me -> first_name.'<br>';
+$bot = new Bot('');
 
-}
-else if($_SERVER['REQUEST_METHOD'] == 'POST'){
+//$me = $bot->getMe();
+//echo $me->getFirstName().' ('.$me->getUsername().')'.PHP_EOL;
 
-	// Get the raw data that has been send by telegram.
-	$stream_data = file_get_contents('php://input');
+$updates = $bot->getUpdates();
+$offset = 0;
+foreach ($updates as $update) {
+    if ($update->getUpdateId() > $offset) {
+        echo $update->getMessage()->getChat()->getUsername().': '.$update->getMessage()->getText().PHP_EOL;
+        $bot->sendMessage($update->getMessage()->getChat()->getId(), 'echo');
+    }
 
-	// Convert the raw data into JSON.
-	$json = json_decode($stream_data);
-
-	// Parse the JSON into an Update-object we can use.
-	$update = parseClass($json, 'Update');
-
-	// Get the id of the user who send a message to this bot.
-	$userid = $update -> message -> chat -> id;
-
-	// Replay to the user with a demo message.
-	$bot -> sendMessage($userid, 'DEMO');
-
+    $offset = $update->getUpdateId();
 }

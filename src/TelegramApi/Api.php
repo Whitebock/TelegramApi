@@ -1,4 +1,6 @@
 <?php
+namespace Whitebock\TelegramApi;
+
 /**
  * Telegram Bot Api - PHP Wrapper
  * For an overall description of the botapi visit
@@ -17,22 +19,16 @@
  * @license https://opensource.org/licenses/MIT MIT License
  */
 
-// Require all class files
-$direcory = dirname(__FILE__) . '/';
-foreach(glob($direcory . 'class.*.php') as $filename) {
-  require_once($filename);
-}
-
 /**
   * @param array|object $params Object or array to parse
   * @param string $asClass Class to parse to
   * @return object|bool
   */
 function parseClass($params, $asClass = null) {
-  
+
   if(empty($params))
     return false;
-    
+
   if (is_object($params))
     $params = (array)$params;
 
@@ -80,7 +76,7 @@ function parseClass($params, $asClass = null) {
           $foundClass = $classname;
         }
       }
-      
+
       // End search as soon as a valid class has been found.
       if ($foundClass != null)
         break;
@@ -103,29 +99,10 @@ function parseClass($params, $asClass = null) {
     if (is_object($value)) {
       // If value is an object, parse it.
       $class->$name = parseClass($value);
-    }
-    /*
-    else if(is_array($value)){
-      // Check if the value is an array,
-      // because that array could also contain objects. 
-      foreach($value as $potentialObject){
-        if(is_object($potentialObject)){
-          $parsed = parseClass($potentialObject);
-          if($parsed)
-            $potentialObject = $parsed;
-        }
-        else if(is_array($potentialObject)){
-          // Recursiv
-        }
-      }
-      $class->$name = $value;
-    }
-    */
-    else {
+    } else {
       $class->$name = $value;
     }
   }
 
   return $class;
 }
-
