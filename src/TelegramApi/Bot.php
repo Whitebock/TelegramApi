@@ -60,13 +60,8 @@ class Bot extends User
      */
     public function getMe()
     {
-        $json = $this->sendPOSTRequest($this->url . 'getMe');
-        $reflection = new \ReflectionProperty('Whitebock\TelegramApi\User', 'id');
-        $reflection->setAccessible(true);
-
-        $me = new User($json->first_name);
-        $me->setUsername($json->username);
-        $reflection->setValue($me, $json->id);
+        $response = $this->callAPI('getMe');
+        $me = $this->serializer->deserialize($response, User::class, 'json');
         return $me;
     }
 
@@ -124,7 +119,7 @@ class Bot extends User
     public function forwardMessage($chat_id, $from_chat_id, $message_id, $options = null)
     {
 
-        $postdata = array(
+        $postData = array(
           'chat_id' => $chat_id,
           'from_chat_id' => $from_chat_id,
           'message_id' => $message_id
@@ -132,12 +127,11 @@ class Bot extends User
 
         if (isset($options)) {
             $options = $this->serializePOSTData($options);
-            $postdata = array_merge($postdata, $options);
+            $postData = array_merge($postData, $options);
         }
 
-
-        $obj = $this->sendPOSTRequest($this->url . 'forwardMessage', $postdata);
-        return parseClass($obj, 'Message');
+        $response = $this->callAPI('forwardMessage', $postData);
+        return $this->serializer->deserialize($response, Message::class, 'json');
     }
 
     /**
@@ -148,18 +142,18 @@ class Bot extends User
      */
     public function sendPhoto($chat_id, $photo, $options = null)
     {
-        $postdata = array(
+        $postData = array(
           'chat_id' => $chat_id,
           'photo' => $photo
         );
 
         if (isset($options)) {
             $options = $this->serializePOSTData($options);
-            $postdata = array_merge($postdata, $options);
+            $postData = array_merge($postData, $options);
         }
 
-        $obj = $this->sendPOSTRequest($this->url . 'sendPhoto', $postdata);
-        return parseClass($obj, 'Message');
+        $response = $this->callAPI('sendPhoto', $postData);
+        return $this->serializer->deserialize($response, Message::class, 'json');
     }
 
     /**
@@ -170,18 +164,18 @@ class Bot extends User
      */
     public function sendAudio($chat_id, $audio, $options = null)
     {
-        $postdata = array(
+        $postData = array(
           'chat_id' => $chat_id,
           'audio' => $audio
         );
 
         if (isset($options)) {
             $options = $this->serializePOSTData($options);
-            $postdata = array_merge($postdata, $options);
+            $postData = array_merge($postData, $options);
         }
 
-        $obj = $this->sendPOSTRequest($this->url . 'sendAudio', $postdata);
-        return parseClass($obj, 'Message');
+        $response = $this->callAPI('sendAudio', $postData);
+        return $this->serializer->deserialize($response, Message::class, 'json');
     }
 
     /**
@@ -192,18 +186,18 @@ class Bot extends User
      */
     public function sendDocument($chat_id, $document, $options = null)
     {
-        $postdata = array(
+        $postData = array(
           'chat_id' => $chat_id,
           'document' => $document
         );
 
         if (isset($options)) {
             $options = $this->serializePOSTData($options);
-            $postdata = array_merge($postdata, $options);
+            $postData = array_merge($postData, $options);
         }
 
-        $obj = $this->sendPOSTRequest($this->url . 'sendDocument', $postdata);
-        return parseClass($obj, 'Message');
+        $response = $this->callAPI('sendDocument', $postData);
+        return $this->serializer->deserialize($response, Message::class, 'json');
     }
 
     /**
@@ -214,18 +208,18 @@ class Bot extends User
      */
     public function sendSticker($chat_id, $sticker, $options = null)
     {
-        $postdata = array(
+        $postData = array(
           'chat_id' => $chat_id,
           'sticker' => $sticker
         );
 
         if (isset($options)) {
             $options = $this->serializePOSTData($options);
-            $postdata = array_merge($postdata, $options);
+            $postData = array_merge($postData, $options);
         }
 
-        $obj = $this->sendPOSTRequest($this->url . 'sendSticker', $postdata);
-        return parseClass($obj, 'Message');
+        $response = $this->callAPI('sendSticker', $postData);
+        return $this->serializer->deserialize($response, Message::class, 'json');
     }
 
     /**
@@ -236,18 +230,18 @@ class Bot extends User
      */
     public function sendVideo($chat_id, $video, $options = null)
     {
-        $postdata = array(
+        $postData = array(
           'chat_id' => $chat_id,
           'video' => $video
         );
 
         if (isset($options)) {
             $options = $this->serializePOSTData($options);
-            $postdata = array_merge($postdata, $options);
+            $postData = array_merge($postData, $options);
         }
 
-        $obj = $this->sendPOSTRequest($this->url . 'sendVideo', $postdata);
-        return parseClass($obj, 'Message');
+        $response = $this->callAPI('sendVideo', $postData);
+        return $this->serializer->deserialize($response, Message::class, 'json');
     }
 
     /**
@@ -258,18 +252,18 @@ class Bot extends User
      */
     public function sendVoice($chat_id, $voice, $options = null)
     {
-        $postdata = array(
+        $postData = array(
           'chat_id' => $chat_id,
           'voice' => $voice
         );
 
         if (isset($options)) {
             $options = $this->serializePOSTData($options);
-            $postdata = array_merge($postdata, $options);
+            $postData = array_merge($postData, $options);
         }
 
-        $obj = $this->sendPOSTRequest($this->url . 'sendVoice', $postdata);
-        return parseClass($obj, 'Message');
+        $response = $this->callAPI('sendVoice', $postData);
+        return $this->serializer->deserialize($response, Message::class, 'json');
     }
 
     /**
@@ -281,7 +275,7 @@ class Bot extends User
      */
     public function sendLocation($chat_id, $latitude, $longitude, $options = null)
     {
-        $postdata = array(
+        $postData = array(
           'chat_id' => $chat_id,
           'latitude' => $latitude,
           'longitude' => $longitude
@@ -289,11 +283,11 @@ class Bot extends User
 
         if (isset($options)) {
             $options = $this->serializePOSTData($options);
-            $postdata = array_merge($postdata, $options);
+            $postData = array_merge($postData, $options);
         }
 
-        $obj = $this->sendPOSTRequest($this->url . 'sendLocation', $postdata);
-        return parseClass($obj, 'Message');
+        $response = $this->callAPI('sendLocation', $postData);
+        return $this->serializer->deserialize($response, Message::class, 'json');
     }
 
     /**
@@ -307,7 +301,7 @@ class Bot extends User
      */
     public function sendVenue($chat_id, $latitude, $longitude, $title, $address, $options = null)
     {
-        $postdata = array(
+        $postData = array(
           'chat_id' => $chat_id,
           'latitude' => $latitude,
           'longitude' => $longitude,
@@ -317,11 +311,11 @@ class Bot extends User
 
         if (isset($options)) {
             $options = $this->serializePOSTData($options);
-            $postdata = array_merge($postdata, $options);
+            $postData = array_merge($postData, $options);
         }
 
-        $obj = $this->sendPOSTRequest($this->url . 'sendVenue', $postdata);
-        return parseClass($obj, 'Message');
+        $response = $this->callAPI('sendVenue', $postData);
+        return $this->serializer->deserialize($response, Message::class, 'json');
     }
 
     /**
@@ -333,7 +327,7 @@ class Bot extends User
      */
     public function sendContact($chat_id, $phone_number, $first_name, $options = null)
     {
-        $postdata = array(
+        $postData = array(
           'chat_id' => $chat_id,
           'phone_number' => $phone_number,
           'first_name' => $first_name
@@ -341,11 +335,11 @@ class Bot extends User
 
         if (isset($options)) {
             $options = $this->serializePOSTData($options);
-            $postdata = array_merge($postdata, $options);
+            $postData = array_merge($postData, $options);
         }
 
-        $obj = $this->sendPOSTRequest($this->url . 'sendContact', $postdata);
-        return parseClass($obj, 'Message');
+        $response = $this->callAPI('sendContact', $postData);
+        return $this->serializer->deserialize($response, Message::class, 'json');
     }
 
     /**
@@ -354,11 +348,11 @@ class Bot extends User
      */
     public function sendChatAction($chat_id, $action)
     {
-        $postdata = array(
+        $postData = array(
           'chat_id' => $chat_id,
           'action' => $action
         );
-        $this->sendPOSTRequest($this->url . 'sendChatAction', $postdata);
+        $this->callAPI('sendChatAction', $postData);
     }
 
     /**
@@ -369,14 +363,13 @@ class Bot extends User
     public function getUserProfilePhotos($user_id, $options = null)
     {
 
-        $postdata = array('user_id' => $user_id);
+        $postData = array('user_id' => $user_id);
         if (isset($options)) {
-            $postdata = array_merge($postdata, $options);
+            $postData = array_merge($postData, $options);
         }
 
-        $obj = $this->sendPOSTRequest($this->url . 'getUserProfilePhotos', $postdata);
-
-        return parseClass($obj, 'UserProfilePhotos');
+        $response = $this->callAPI('getUserProfilePhotos', $postData);
+        return $this->serializer->deserialize($response, UserProfilePhotos::class, 'json');
     }
 
     /**
@@ -387,8 +380,9 @@ class Bot extends User
      */
     public function getFile($file_id)
     {
-        $postdata = array('file_id' => $file_id);
-        $obj = $this->sendPOSTRequest($this->url . 'getFile', $postdata);
+        $postData = array('file_id' => $file_id);
+        $response = $this->callAPI('getFile', $postData);
+        $obj = json_decode($response);
 
         if ($obj === false) {
             return false;
@@ -420,8 +414,7 @@ class Bot extends User
      */
     public function setWebHook($options = null)
     {
-        $obj = $this->sendPOSTRequest($this->url . 'setWebhook', $options);
-        return $obj;
+        return $this->callAPI('setWebhook', $options);;
     }
 
     /**
@@ -452,31 +445,5 @@ class Bot extends User
             throw new \Exception($response->description, $response->error_code);
         }
         return json_encode($response->result);
-    }
-
-    /**
-     * @param string $url
-     * @param array $postData
-     * @return object|bool
-     */
-    public function sendPOSTRequest(string $url, array $postData = null)
-    {
-        $postData = is_array($postData) ? $postData : [];
-
-        $curl = curl_init($url);
-        curl_setopt_array($curl, array(
-          CURLOPT_RETURNTRANSFER => 1,
-          CURLOPT_POST => 1,
-          CURLOPT_POSTFIELDS => $postData
-        ));
-        $json = curl_exec($curl);
-        curl_close($curl);
-        if (empty($json)) {
-            return false;
-        }
-        if (empty(json_decode($json)->result)) {
-            return json_decode($json)->ok;
-        }
-        return json_decode($json)->result;
     }
 }

@@ -60,11 +60,6 @@ class Update
      */
     protected $pre_checkout_query;
 
-    public function __construct()
-    {
-
-    }
-
     /**
      * @return int
      */

@@ -43,65 +43,94 @@ class User
      */
     protected $language_code;
 
-    public function __construct($id)
-    {
-        $this->id = $id;
-    }
-
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
+     * @param int $id
+     * @return User
+     */
+    public function setId(int $id): User
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
      * @return string
      */
-    public function getFirstName()
+    public function getFirstName(): string
     {
         return $this->first_name;
     }
 
     /**
      * @param string $first_name
+     * @return User
      */
-    public function setFirstName($first_name)
+    public function setFirstName(string $first_name): User
     {
         $this->first_name = $first_name;
+        return $this;
     }
 
     /**
      * @return string
      */
-    public function getLastName()
+    public function getLastName(): string
     {
         return $this->last_name;
     }
 
     /**
      * @param string $last_name
+     * @return User
      */
-    public function setLastName($last_name)
+    public function setLastName(string $last_name): User
     {
         $this->last_name = $last_name;
+        return $this;
     }
 
     /**
      * @return string
      */
-    public function getUsername()
+    public function getUsername(): string
     {
         return $this->username;
     }
 
     /**
      * @param string $username
+     * @return User
      */
-    public function setUsername($username)
+    public function setUsername(string $username): User
     {
         $this->username = $username;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLanguageCode(): string
+    {
+        return $this->language_code;
+    }
+
+    /**
+     * @param string $language_code
+     * @return User
+     */
+    public function setLanguageCode(string $language_code): User
+    {
+        $this->language_code = $language_code;
+        return $this;
     }
 
 
