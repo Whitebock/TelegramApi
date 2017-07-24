@@ -7,7 +7,7 @@ A PHP Wrapper for the [Telegram Bot Api](https://core.telegram.org/bots/api)
 
 Currently being refactored, see the latest <a href="https://github.com/Whitebock/TelegramBot-ApiWrapper/releases">releases</a> for a stable version.
 
-- [x] Bot Api 3.2
+- [ ] Bot Api 3.2
 - [x] Complete send functions
 - [ ] Add group administration
 - [ ] Inline mode
