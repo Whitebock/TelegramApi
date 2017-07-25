@@ -11,32 +11,32 @@ namespace Whitebock\TelegramApi;
 class Update
 {
     /**
-     * @var int $update_id Unique identifier for this update
+     * @var int Unique identifier for this update
      */
     protected $update_id;
 
     /**
-     * @var Message $message New incoming message of any kind — text, photo, sticker, etc.
+     * @var Message New incoming message of any kind — text, photo, sticker, etc.
      */
     protected $message;
 
     /**
-     * @var Message $edited_message New version of a message that is known to the bot and was edited
+     * @var Message New version of a message that is known to the bot and was edited
      */
     protected $edited_message;
 
     /**
-     * @var Message $channel_post New incoming channel post of any kind — text, photo, sticker, etc.
+     * @var Message New incoming channel post of any kind — text, photo, sticker, etc.
      */
     protected $channel_post;
 
     /**
-     * @var Message $edited_channel_post New version of a channel post that is known to the bot and was edited
+     * @var Message New version of a channel post that is known to the bot and was edited
      */
     protected $edited_channel_post;
 
     /**
-     * @var InlineQuery $inline_query New incoming inline query
+     * @var InlineQuery New incoming inline query
      */
     protected $inline_query;
 
@@ -46,17 +46,17 @@ class Update
     protected $chosen_inline_result;
 
     /**
-     * @var CallbackQuery $callback_query New incoming callback query
+     * @var CallbackQuery New incoming callback query
      */
     protected $callback_query;
 
     /**
-     * @var ShippingQuery $shipping_query New incoming shipping query. Only for invoices with flexible price
+     * @var ShippingQuery New incoming shipping query. Only for invoices with flexible price
      */
     protected $shipping_query;
 
     /**
-     * @var PreCheckoutQuery $pre_checkout_query New incoming pre-checkout query. Contains full information about checkout
+     * @var PreCheckoutQuery New incoming pre-checkout query. Contains full information about checkout
      */
     protected $pre_checkout_query;
 
@@ -70,10 +70,12 @@ class Update
 
     /**
      * @param int $update_id
+     * @return Update
      */
-    public function setUpdateId(int $update_id)
+    public function setUpdateId(int $update_id): Update
     {
         $this->update_id = $update_id;
+        return $this;
     }
 
     /**
@@ -86,10 +88,12 @@ class Update
 
     /**
      * @param Message $message
+     * @return Update
      */
-    public function setMessage(Message $message)
+    public function setMessage(Message $message): Update
     {
         $this->message = $message;
+        return $this;
     }
 
     /**
@@ -102,10 +106,12 @@ class Update
 
     /**
      * @param Message $edited_message
+     * @return Update
      */
-    public function setEditedMessage(Message $edited_message)
+    public function setEditedMessage(Message $edited_message): Update
     {
         $this->edited_message = $edited_message;
+        return $this;
     }
 
     /**
@@ -118,10 +124,12 @@ class Update
 
     /**
      * @param Message $channel_post
+     * @return Update
      */
-    public function setChannelPost(Message $channel_post)
+    public function setChannelPost(Message $channel_post): Update
     {
         $this->channel_post = $channel_post;
+        return $this;
     }
 
     /**
@@ -134,10 +142,12 @@ class Update
 
     /**
      * @param Message $edited_channel_post
+     * @return Update
      */
-    public function setEditedChannelPost(Message $edited_channel_post)
+    public function setEditedChannelPost(Message $edited_channel_post): Update
     {
         $this->edited_channel_post = $edited_channel_post;
+        return $this;
     }
 
     /**
@@ -150,10 +160,12 @@ class Update
 
     /**
      * @param InlineQuery $inline_query
+     * @return Update
      */
-    public function setInlineQuery(InlineQuery $inline_query)
+    public function setInlineQuery(InlineQuery $inline_query): Update
     {
         $this->inline_query = $inline_query;
+        return $this;
     }
 
     /**
@@ -166,10 +178,12 @@ class Update
 
     /**
      * @param ChosenInlineResult $chosen_inline_result
+     * @return Update
      */
-    public function setChosenInlineResult(ChosenInlineResult $chosen_inline_result)
+    public function setChosenInlineResult(ChosenInlineResult $chosen_inline_result): Update
     {
         $this->chosen_inline_result = $chosen_inline_result;
+        return $this;
     }
 
     /**
@@ -182,10 +196,12 @@ class Update
 
     /**
      * @param CallbackQuery $callback_query
+     * @return Update
      */
-    public function setCallbackQuery(CallbackQuery $callback_query)
+    public function setCallbackQuery(CallbackQuery $callback_query): Update
     {
         $this->callback_query = $callback_query;
+        return $this;
     }
 
     /**
@@ -198,10 +214,12 @@ class Update
 
     /**
      * @param ShippingQuery $shipping_query
+     * @return Update
      */
-    public function setShippingQuery(ShippingQuery $shipping_query)
+    public function setShippingQuery(ShippingQuery $shipping_query): Update
     {
         $this->shipping_query = $shipping_query;
+        return $this;
     }
 
     /**
@@ -214,11 +232,11 @@ class Update
 
     /**
      * @param PreCheckoutQuery $pre_checkout_query
+     * @return Update
      */
-    public function setPreCheckoutQuery(PreCheckoutQuery $pre_checkout_query)
+    public function setPreCheckoutQuery(PreCheckoutQuery $pre_checkout_query): Update
     {
         $this->pre_checkout_query = $pre_checkout_query;
+        return $this;
     }
-
-
 }

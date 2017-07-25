@@ -1,4 +1,5 @@
 <?php
+
 namespace Whitebock\TelegramApi;
 
 /**
@@ -6,26 +7,25 @@ namespace Whitebock\TelegramApi;
  * For an updated description of this class visit
  * https://core.telegram.org/bots/api#voice
  *
- * Voice Class
- * This object represents a voice note.
+ * VideoNote Class
+ * This object represents a video message (available in Telegram apps as of v.4.0).
  *
  * @package TelegramBot-Api
  * @author Sven Drewniok <sven.drewniok@web.de>
  * @author Sven Drewniok @Whitebock
  * @license https://opensource.org/licenses/MIT MIT License
  */
-class Voice extends File
+class VideoNote extends File
 {
-
     /**
-     * @var int Duration of the audio in seconds as defined by sender
+     * @var int Duration of the audio in video as defined by sender
      */
     protected $duration;
 
     /**
-     * @var string MIME type of the file as defined by sender
+     * @var PhotoSize Video thumbnail
      */
-    protected $mime_type;
+    protected $thumb;
 
     /**
      * @return int
@@ -37,29 +37,29 @@ class Voice extends File
 
     /**
      * @param int $duration
-     * @return Voice
+     * @return VideoNote
      */
-    public function setDuration(int $duration): Voice
+    public function setDuration(int $duration): VideoNote
     {
         $this->duration = $duration;
         return $this;
     }
 
     /**
-     * @return string
+     * @return PhotoSize
      */
-    public function getMimeType(): string
+    public function getThumb(): PhotoSize
     {
-        return $this->mime_type;
+        return $this->thumb;
     }
 
     /**
-     * @param string $mime_type
-     * @return Voice
+     * @param PhotoSize $thumb
+     * @return VideoNote
      */
-    public function setMimeType(string $mime_type): Voice
+    public function setThumb(PhotoSize $thumb): VideoNote
     {
-        $this->mime_type = $mime_type;
+        $this->thumb = $thumb;
         return $this;
     }
 }

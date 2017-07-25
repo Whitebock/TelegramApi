@@ -17,27 +17,27 @@ namespace Whitebock\TelegramApi;
 class MessageEntity
 {
     /**
-     * @var string $type Type of the entity. Can be mention (@username), hashtag, bot_command, url, email, bold (bold text), italic (italic text), code (monowidth string), pre (monowidth block), text_link (for clickable text URLs), text_mention (for users without usernames)
+     * @var string Type of the entity. Can be mention (@username), hashtag, bot_command, url, email, bold (bold text), italic (italic text), code (monowidth string), pre (monowidth block), text_link (for clickable text URLs), text_mention (for users without usernames)
      */
     protected $type;
 
     /**
-     * @var int $offset Offset in UTF-16 code units to the start of the entity
+     * @var int Offset in UTF-16 code units to the start of the entity
      */
     protected $offset;
 
     /**
-     * @var int $length Length of the entity in UTF-16 code units
+     * @var int Length of the entity in UTF-16 code units
      */
     protected $length;
 
     /**
-     * @var string $url Optional. For “text_link” only, url that will be opened after user taps on the text
+     * @var string For “text_link” only, url that will be opened after user taps on the text
      */
     protected $url;
 
     /**
-     * @var User $user Optional. For “text_mention” only, the mentioned user
+     * @var User For “text_mention” only, the mentioned user
      */
     protected $user;
 
@@ -51,10 +51,12 @@ class MessageEntity
 
     /**
      * @param string $type
+     * @return MessageEntity
      */
-    public function setType(string $type)
+    public function setType(string $type): MessageEntity
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -67,10 +69,12 @@ class MessageEntity
 
     /**
      * @param int $offset
+     * @return MessageEntity
      */
-    public function setOffset(int $offset)
+    public function setOffset(int $offset): MessageEntity
     {
         $this->offset = $offset;
+        return $this;
     }
 
     /**
@@ -83,10 +87,12 @@ class MessageEntity
 
     /**
      * @param int $length
+     * @return MessageEntity
      */
-    public function setLength(int $length)
+    public function setLength(int $length): MessageEntity
     {
         $this->length = $length;
+        return $this;
     }
 
     /**
@@ -99,10 +105,12 @@ class MessageEntity
 
     /**
      * @param string $url
+     * @return MessageEntity
      */
-    public function setUrl(string $url)
+    public function setUrl(string $url): MessageEntity
     {
         $this->url = $url;
+        return $this;
     }
 
     /**
@@ -115,11 +123,11 @@ class MessageEntity
 
     /**
      * @param User $user
+     * @return MessageEntity
      */
-    public function setUser(User $user)
+    public function setUser(User $user): MessageEntity
     {
         $this->user = $user;
+        return $this;
     }
-
-
 }

@@ -17,12 +17,12 @@ namespace Whitebock\TelegramApi;
 class PhotoSize extends File
 {
     /**
-     * @var int $width Photo width
+     * @var int Photo width
      */
     protected $width;
 
     /**
-     * @var int $height Photo height
+     * @var int Photo height
      */
     protected $height;
 
@@ -36,10 +36,12 @@ class PhotoSize extends File
 
     /**
      * @param int $width
+     * @return PhotoSize
      */
-    public function setWidth(int $width)
+    public function setWidth(int $width): PhotoSize
     {
         $this->width = $width;
+        return $this;
     }
 
     /**
@@ -52,11 +54,11 @@ class PhotoSize extends File
 
     /**
      * @param int $height
+     * @return PhotoSize
      */
-    public function setHeight(int $height)
+    public function setHeight(int $height): PhotoSize
     {
         $this->height = $height;
+        return $this;
     }
-
-
 }

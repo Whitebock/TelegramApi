@@ -17,12 +17,12 @@ namespace Whitebock\TelegramApi;
 class UserProfilePhotos
 {
     /**
-     * var int $total_count Total number of profile pictures the target user has
+     * var int Total number of profile pictures the target user has
      */
     protected $total_count;
 
     /**
-     * @var PhotoSize[][] $photos Requested profile pictures (in up to 4 sizes each)
+     * @var PhotoSize[][] Requested profile pictures (in up to 4 sizes each)
      */
     protected $photos;
 
@@ -36,10 +36,12 @@ class UserProfilePhotos
 
     /**
      * @param mixed $total_count
+     * @return UserProfilePhotos
      */
     public function setTotalCount($total_count)
     {
         $this->total_count = $total_count;
+        return $this;
     }
 
     /**
@@ -52,11 +54,11 @@ class UserProfilePhotos
 
     /**
      * @param PhotoSize[][] $photos
+     * @return UserProfilePhotos
      */
-    public function setPhotos(array $photos)
+    public function setPhotos(array $photos): UserProfilePhotos
     {
         $this->photos = $photos;
+        return $this;
     }
-
-
 }

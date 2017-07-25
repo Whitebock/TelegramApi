@@ -18,22 +18,22 @@ namespace Whitebock\TelegramApi;
 class Contact
 {
     /**
-     * @var string $phone_number Contact's phone number
+     * @var string Contact's phone number
      */
     protected $phone_number;
 
     /**
-     * @var string $first_name Contact's first name
+     * @var string Contact's first name
      */
     protected $first_name;
 
     /**
-     * @var string $last_name Optional. Contact's last name
+     * @var string Contact's last name
      */
     protected $last_name;
 
     /**
-     * @var int $user_id Optional. Contact's user identifier in Telegram
+     * @var int Contact's user identifier in Telegram
      */
     protected $user_id;
 
@@ -47,10 +47,12 @@ class Contact
 
     /**
      * @param string $phone_number
+     * @return Contact
      */
-    public function setPhoneNumber(string $phone_number)
+    public function setPhoneNumber(string $phone_number): Contact
     {
         $this->phone_number = $phone_number;
+        return $this;
     }
 
     /**
@@ -63,10 +65,12 @@ class Contact
 
     /**
      * @param string $first_name
+     * @return Contact
      */
-    public function setFirstName(string $first_name)
+    public function setFirstName(string $first_name): Contact
     {
         $this->first_name = $first_name;
+        return $this;
     }
 
     /**
@@ -79,10 +83,12 @@ class Contact
 
     /**
      * @param string $last_name
+     * @return Contact
      */
-    public function setLastName(string $last_name)
+    public function setLastName(string $last_name): Contact
     {
         $this->last_name = $last_name;
+        return $this;
     }
 
     /**
@@ -95,9 +101,11 @@ class Contact
 
     /**
      * @param int $user_id
+     * @return Contact
      */
-    public function setUserId(int $user_id)
+    public function setUserId(int $user_id): Contact
     {
         $this->user_id = $user_id;
+        return $this;
     }
 }

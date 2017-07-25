@@ -17,17 +17,17 @@ namespace Whitebock\TelegramApi;
 class KeyboardButton
 {
     /**
-     * @var string $text Text of the button. If none of the optional fields are used, it will be sent to the bot as a message when the button is pressed
+     * @var string Text of the button. If none of the optional fields are used, it will be sent to the bot as a message when the button is pressed
      */
     protected $text;
 
     /**
-     * @var bool $request_contact Optional. If True, the user's phone number will be sent as a contact when the button is pressed. Available in private chats only
+     * @var bool If True, the user's phone number will be sent as a contact when the button is pressed. Available in private chats only
      */
     protected $request_contact;
 
     /**
-     * @var bool $request_location Optional. If True, the user's current location will be sent when the button is pressed. Available in private chats only
+     * @var bool If True, the user's current location will be sent when the button is pressed. Available in private chats only
      */
     protected $request_location;
 
@@ -41,10 +41,12 @@ class KeyboardButton
 
     /**
      * @param string $text
+     * @return KeyboardButton
      */
-    public function setText(string $text)
+    public function setText(string $text): KeyboardButton
     {
         $this->text = $text;
+        return $this;
     }
 
     /**
@@ -57,10 +59,12 @@ class KeyboardButton
 
     /**
      * @param boolean $request_contact
+     * @return KeyboardButton
      */
-    public function setRequestContact(bool $request_contact)
+    public function setRequestContact(bool $request_contact): KeyboardButton
     {
         $this->request_contact = $request_contact;
+        return $this;
     }
 
     /**
@@ -73,11 +77,11 @@ class KeyboardButton
 
     /**
      * @param boolean $request_location
+     * @return KeyboardButton
      */
-    public function setRequestLocation(bool $request_location)
+    public function setRequestLocation(bool $request_location): KeyboardButton
     {
         $this->request_location = $request_location;
+        return $this;
     }
-
-
 }

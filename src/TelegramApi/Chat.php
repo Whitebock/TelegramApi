@@ -18,39 +18,49 @@ namespace Whitebock\TelegramApi;
 class Chat
 {
     /**
-     * @var int $id Unique identifier for this chat.
+     * @var int Unique identifier for this chat.
      */
     protected $id;
 
     /**
-     * @var string $type Type of chat, can be either “private”, “group”, “supergroup” or “channel”
+     * @var string Type of chat, can be either “private”, “group”, “supergroup” or “channel”
      */
     protected $type;
 
     /**
-     * @var string $title Optional. Title, for supergroups, channels and group chats
+     * @var string Title, for supergroups, channels and group chats
      */
     protected $title;
 
     /**
-     * @var string $username Optional. Username, for private chats, supergroups and channels if available
+     * @var string Username, for private chats, supergroups and channels if available
      */
     protected $username;
 
     /**
-     * @var string $first_name Optional. First name of the other party in a private chat
+     * @var string First name of the other party in a private chat
      */
     protected $first_name;
 
     /**
-     * @var string $last_name Optional. Last name of the other party in a private chat
+     * @var string Last name of the other party in a private chat
      */
     protected $last_name;
 
     /**
-     * @var bool $all_members_are_administrators Optional. True if a group has ‘All Members Are Admins’ enabled.
+     * @var bool True if a group has ‘All Members Are Admins’ enabled
      */
     protected $all_members_are_administrators;
+
+    /**
+     * @var string Description, for supergroups and channel chats
+     */
+    protected $description;
+
+    /**
+     * @var string Chat invite link, for supergroups and channel chats
+     */
+    protected $invite_link;
 
     /**
      * @return int
@@ -62,10 +72,12 @@ class Chat
 
     /**
      * @param int $id
+     * @return Chat
      */
-    public function setId(int $id)
+    public function setId(int $id): Chat
     {
         $this->id = $id;
+        return $this;
     }
 
     /**
@@ -78,10 +90,12 @@ class Chat
 
     /**
      * @param string $type
+     * @return Chat
      */
-    public function setType(string $type)
+    public function setType(string $type): Chat
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -94,10 +108,12 @@ class Chat
 
     /**
      * @param string $title
+     * @return Chat
      */
-    public function setTitle(string $title)
+    public function setTitle(string $title): Chat
     {
         $this->title = $title;
+        return $this;
     }
 
     /**
@@ -110,10 +126,12 @@ class Chat
 
     /**
      * @param string $username
+     * @return Chat
      */
-    public function setUsername(string $username)
+    public function setUsername(string $username): Chat
     {
         $this->username = $username;
+        return $this;
     }
 
     /**
@@ -126,10 +144,12 @@ class Chat
 
     /**
      * @param string $first_name
+     * @return Chat
      */
-    public function setFirstName(string $first_name)
+    public function setFirstName(string $first_name): Chat
     {
         $this->first_name = $first_name;
+        return $this;
     }
 
     /**
@@ -142,10 +162,12 @@ class Chat
 
     /**
      * @param string $last_name
+     * @return Chat
      */
-    public function setLastName(string $last_name)
+    public function setLastName(string $last_name): Chat
     {
         $this->last_name = $last_name;
+        return $this;
     }
 
     /**
@@ -158,11 +180,47 @@ class Chat
 
     /**
      * @param boolean $all_members_are_administrators
+     * @return Chat
      */
-    public function setAllMembersAreAdministrators(bool $all_members_are_administrators)
+    public function setAllMembersAreAdministrators(bool $all_members_are_administrators): Chat
     {
         $this->all_members_are_administrators = $all_members_are_administrators;
+        return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
 
+    /**
+     * @param string $description
+     * @return Chat
+     */
+    public function setDescription(string $description): Chat
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getInviteLink(): string
+    {
+        return $this->invite_link;
+    }
+
+    /**
+     * @param string $invite_link
+     * @return Chat
+     */
+    public function setInviteLink(string $invite_link): Chat
+    {
+        $this->invite_link = $invite_link;
+        return $this;
+    }
 }

@@ -18,17 +18,17 @@ namespace Whitebock\TelegramApi;
 class File
 {
     /**
-     * @var string $file_id Unique identifier for this file
+     * @var string Unique identifier for this file
      */
     protected $file_id;
 
     /**
-     * @var int $file_size Optional. File size, if known
+     * @var int File size, if known
      */
     protected $file_size;
 
     /**
-     * @var string $file_path Optional. File path.
+     * @var string File path
      */
     protected $file_path;
 
@@ -89,10 +89,12 @@ class File
 
     /**
      * @param string $file_id
+     * @return File
      */
-    public function setFileId(string $file_id)
+    public function setFileId(string $file_id): File
     {
         $this->file_id = $file_id;
+        return $this;
     }
 
     /**
@@ -105,10 +107,12 @@ class File
 
     /**
      * @param int $file_size
+     * @return File
      */
-    public function setFileSize(int $file_size)
+    public function setFileSize(int $file_size): File
     {
         $this->file_size = $file_size;
+        return $this;
     }
 
     /**
@@ -121,11 +125,12 @@ class File
 
     /**
      * @param string $file_path
+     * @return File
      */
-    public function setFilePath(string $file_path)
+    public function setFilePath(string $file_path): File
     {
         $this->file_path = $file_path;
+        return $this;
     }
-
 
 }

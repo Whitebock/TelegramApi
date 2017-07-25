@@ -17,12 +17,12 @@ namespace Whitebock\TelegramApi;
 class ResponseParameters
 {
     /**
-     * @var int $migrate_to_chat_id Optional. The group has been migrated to a supergroup with the specified identifier.
+     * @var int The group has been migrated to a supergroup with the specified identifier.
      */
     protected $migrate_to_chat_id;
 
     /**
-     * @var int $retry_after Optional. In case of exceeding flood control, the number of seconds left to wait before the request can be repeated
+     * @var int In case of exceeding flood control, the number of seconds left to wait before the request can be repeated
      */
     protected $retry_after;
 
@@ -36,10 +36,12 @@ class ResponseParameters
 
     /**
      * @param int $migrate_to_chat_id
+     * @return ResponseParameters
      */
-    public function setMigrateToChatId(int $migrate_to_chat_id)
+    public function setMigrateToChatId(int $migrate_to_chat_id): ResponseParameters
     {
         $this->migrate_to_chat_id = $migrate_to_chat_id;
+        return $this;
     }
 
     /**
@@ -52,11 +54,11 @@ class ResponseParameters
 
     /**
      * @param int $retry_after
+     * @return ResponseParameters
      */
-    public function setRetryAfter(int $retry_after)
+    public function setRetryAfter(int $retry_after): ResponseParameters
     {
         $this->retry_after = $retry_after;
+        return $this;
     }
-
-
 }

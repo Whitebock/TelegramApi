@@ -17,27 +17,27 @@ namespace Whitebock\TelegramApi;
 class WebhookInfo
 {
     /**
-     * @var string $url Webhook URL, may be empty if webhook is not set up
+     * @var string Webhook URL, may be empty if webhook is not set up
      */
     protected $url;
 
     /**
-     * @var bool $has_custom_certificate True, if a custom certificate was provided for webhook certificate checks
+     * @var bool True, if a custom certificate was provided for webhook certificate checks
      */
     protected $has_custom_certificate;
 
     /**
-     * @var int $pending_update_count Number of updates awaiting delivery
+     * @var int Number of updates awaiting delivery
      */
     protected $pending_update_count;#
 
     /**
-     * @var int $last_error_date Optional. Unix time for the most recent error that happened when trying to deliver an update via webhook
+     * @var int Unix time for the most recent error that happened when trying to deliver an update via webhook
      */
     protected $last_error_date;
 
     /**
-     * @var string $last_error_message Optional. Error message in human-readable format for the most recent error that happened when trying to deliver an update via webhook
+     * @var string Error message in human-readable format for the most recent error that happened when trying to deliver an update via webhook
      */
     protected $last_error_message;
 
@@ -51,10 +51,12 @@ class WebhookInfo
 
     /**
      * @param string $url
+     * @return WebhookInfo
      */
-    public function setUrl(string $url)
+    public function setUrl(string $url): WebhookInfo
     {
         $this->url = $url;
+        return $this;
     }
 
     /**
@@ -67,10 +69,12 @@ class WebhookInfo
 
     /**
      * @param boolean $has_custom_certificate
+     * @return WebhookInfo
      */
-    public function setHasCustomCertificate(bool $has_custom_certificate)
+    public function setHasCustomCertificate(bool $has_custom_certificate): WebhookInfo
     {
         $this->has_custom_certificate = $has_custom_certificate;
+        return $this;
     }
 
     /**
@@ -83,10 +87,12 @@ class WebhookInfo
 
     /**
      * @param int $pending_update_count
+     * @return WebhookInfo
      */
-    public function setPendingUpdateCount(int $pending_update_count)
+    public function setPendingUpdateCount(int $pending_update_count): WebhookInfo
     {
         $this->pending_update_count = $pending_update_count;
+        return $this;
     }
 
     /**
@@ -99,10 +105,12 @@ class WebhookInfo
 
     /**
      * @param int $last_error_date
+     * @return WebhookInfo
      */
-    public function setLastErrorDate(int $last_error_date)
+    public function setLastErrorDate(int $last_error_date): WebhookInfo
     {
         $this->last_error_date = $last_error_date;
+        return $this;
     }
 
     /**
@@ -115,11 +123,11 @@ class WebhookInfo
 
     /**
      * @param string $last_error_message
+     * @return WebhookInfo
      */
-    public function setLastErrorMessage(string $last_error_message)
+    public function setLastErrorMessage(string $last_error_message): WebhookInfo
     {
         $this->last_error_message = $last_error_message;
+        return $this;
     }
-
-
 }

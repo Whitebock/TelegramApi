@@ -17,12 +17,12 @@ namespace Whitebock\TelegramApi;
 class Location
 {
     /**
-     * @var float $longitude Longitude as defined by sender
+     * @var float Longitude as defined by sender
      */
     protected $longitude;
 
     /**
-     * @var float $latitude Latitude as defined by sender
+     * @var float Latitude as defined by sender
      */
     protected $latitude;
 
@@ -36,10 +36,12 @@ class Location
 
     /**
      * @param float $longitude
+     * @return Location
      */
-    public function setLongitude(float $longitude)
+    public function setLongitude(float $longitude): Location
     {
         $this->longitude = $longitude;
+        return $this;
     }
 
     /**
@@ -52,11 +54,11 @@ class Location
 
     /**
      * @param float $latitude
+     * @return Location
      */
-    public function setLatitude(float $latitude)
+    public function setLatitude(float $latitude): Location
     {
         $this->latitude = $latitude;
+        return $this;
     }
-
-
 }

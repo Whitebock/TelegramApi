@@ -18,12 +18,12 @@ namespace Whitebock\TelegramApi;
 class ForceReply
 {
     /**
-     * @var bool $force_reply Shows reply interface to the user, as if they manually selected the bot‘s message and tapped ’Reply'
+     * @var bool Shows reply interface to the user, as if they manually selected the bot‘s message and tapped ’Reply'
      */
-    protected $force_reply;
+    protected $force_reply = true;
 
     /**
-     * @var bool $selective Optional. Use this parameter if you want to force reply from specific users only. Targets: <ol><li>users that are @mentioned in the text of the Message object;</li><li>if the bot's message is a reply (has reply_to_message_id), sender of the original message.</li></ol>
+     * @var bool Use this parameter if you want to force reply from specific users only. Targets: <ol><li>users that are @mentioned in the text of the Message object;</li><li>if the bot's message is a reply (has reply_to_message_id), sender of the original message.</li></ol>
      */
     protected $selective;
 
@@ -37,10 +37,12 @@ class ForceReply
 
     /**
      * @param boolean $force_reply
+     * @return ForceReply
      */
-    public function setForceReply(bool $force_reply)
+    public function setForceReply(bool $force_reply): ForceReply
     {
         $this->force_reply = $force_reply;
+        return $this;
     }
 
     /**
@@ -53,11 +55,11 @@ class ForceReply
 
     /**
      * @param boolean $selective
+     * @return ForceReply
      */
-    public function setSelective(bool $selective)
+    public function setSelective(bool $selective): ForceReply
     {
         $this->selective = $selective;
+        return $this;
     }
-
-
 }

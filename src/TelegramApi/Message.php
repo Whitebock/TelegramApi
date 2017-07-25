@@ -2,6 +2,8 @@
 
 namespace Whitebock\TelegramApi;
 
+use Whitebock\TelegramApi\Sticker\Sticker;
+
 /**
  * Telegram Bot Api - PHP Wrapper
  * For an updated description of this class visit
@@ -19,174 +21,194 @@ namespace Whitebock\TelegramApi;
 class Message
 {
     /**
-     * @var string $id Unique message identifier
+     * @var string Unique message identifier
      */
     protected $id;
 
     /**
-     * @var User $from Optional. Sender, can be empty for messages sent to channels
+     * @var User Optional. Sender, can be empty for messages sent to channels
      */
     protected $from;
 
     /**
-     * @var int $date Date the message was sent in Unix time
+     * @var int Date the message was sent in Unix time
      */
     protected $date;
 
     /**
-     * @var Chat $chat Conversation the message belongs to
+     * @var Chat Conversation the message belongs to
      */
     protected $chat;
 
     /**
-     * @var User $forward_from Optional. For forwarded messages, sender of the original message
+     * @var User For forwarded messages, sender of the original message
      */
     protected $forward_from;
 
     /**
-     * @var Chat $forward_from_chat Optional. For messages forwarded from a channel, information about the original channel
+     * @var Chat For messages forwarded from a channel, information about the original channel
      */
     protected $forward_from_chat;
 
     /**
-     * @var int $forward_date Optional. For forwarded messages, date the original message was sent in Unix time
+     * @var int For forwarded channel posts, identifier of the original message in the channel
+     */
+    protected $forward_from_message_id;
+
+    /**
+     * @var int For forwarded messages, date the original message was sent in Unix time
      */
     protected $forward_date;
 
     /**
-     * @var Message $reply_to_message Optional. For replies, the original message. Note that the Message object in this field will not contain further reply_to_message fields even if it itself is a reply.
+     * @var Message For replies, the original message. Note that the Message object in this field will not contain further reply_to_message fields even if it itself is a reply.
      */
     protected $reply_to_message;
 
     /**
-     * @var int $edit_date Optional. Date the message was last edited in Unix time
+     * @var int Date the message was last edited in Unix time
      */
     protected $edit_date;
 
     /**
-     * @var string $text Optional. For text messages, the actual UTF-8 text of the message, 0-4096 characters.
+     * @var string For text messages, the actual UTF-8 text of the message, 0-4096 characters.
      */
     protected $text;
 
     /**
-     * @var MessageEntity[] $entities Optional. For text messages, special entities like usernames, URLs, bot commands, etc. that appear in the text
+     * @var MessageEntity[] For text messages, special entities like usernames, URLs, bot commands, etc. that appear in the text
      */
     protected $entities;
 
     /**
-     * @var Audio $audio Optional. Message is an audio file, information about the file
+     * @var Audio Message is an audio file, information about the file
      */
     protected $audio;
 
     /**
-     * @var Document $document Optional. Message is a general file, information about the file
+     * @var Document Message is a general file, information about the file
      */
     protected $document;
 
     /**
-     * @var Game $game Optional. Message is a game, information about the game.
+     * @var Game Message is a game, information about the game.
      */
     protected $game;
 
     /**
-     * @var PhotoSize[] $photo Optional. Message is a photo, available sizes of the photo
+     * @var PhotoSize[] Message is a photo, available sizes of the photo
      */
     protected $photo;
 
     /**
-     * @var Sticker $sticker Optional. Message is a sticker, information about the sticker
+     * @var Sticker Message is a sticker, information about the sticker
      */
     protected $sticker;
 
     /**
-     * @var Video $video Optional. Message is a video, information about the video
+     * @var Video Message is a video, information about the video
      */
     protected $video;
 
     /**
-     * @var Voice $voice Optional. Message is a voice message, information about the file
+     * @var Voice Message is a voice message, information about the file
      */
     protected $voice;
 
     /**
-     * @var string $caption Optional. Caption for the document, photo or video, 0-200 characters
+     * @var VideoNote Message is a video note, information about the video message
+     */
+    protected $video_note;
+
+    /**
+     * @var User[] New members that were added to the group or supergroup and information about them (the bot itself may be one of these members)
+     */
+    protected $new_chat_members;
+
+    /**
+     * @var string Caption for the document, photo or video, 0-200 characters
      */
     protected $caption;
 
     /**
-     * @var Contact $contact Optional. Message is a shared contact, information about the contact
+     * @var Contact Message is a shared contact, information about the contact
      */
     protected $contact;
 
     /**
-     * @var Location $location Optional. Message is a shared location, information about the location
+     * @var Location Message is a shared location, information about the location
      */
     protected $location;
 
     /**
-     * @var Venue $venue Optional. Message is a venue, information about the venue
+     * @var Venue Message is a venue, information about the venue
      */
     protected $venue;
 
     /**
-     * @var User $new_chat_member Optional. A new member was added to the group, information about them (this member may be the bot itself)
+     * @var User A new member was added to the group, information about them (this member may be the bot itself)
      */
     protected $new_chat_member;
 
     /**
-     * @var User $left_chat_member Optional. A member was removed from the group, information about them (this member may be the bot itself)
+     * @var User A member was removed from the group, information about them (this member may be the bot itself)
      */
     protected $left_chat_member;
 
     /**
-     * @var string $new_chat_title Optional. A chat title was changed to this value
+     * @var string A chat title was changed to this value
      */
     protected $new_chat_title;
 
     /**
-     * @var PhotoSize[] $new_chat_photo Optional. A chat photo was changed to this value
+     * @var PhotoSize[] A chat photo was changed to this value
      */
     protected $new_chat_photo;
 
     /**
-     * @var bool $delete_chat_photo Optional. Service message: the chat photo was deleted
+     * @var bool Service message: the chat photo was deleted
      */
     protected $delete_chat_photo;
 
     /**
-     * @var bool $group_chat_created Optional. Service message: the group has been created
+     * @var bool Service message: the group has been created
      */
     protected $group_chat_created;
 
     /**
-     * @var bool $supergroup_chat_created Optional. Service message: the supergroup has been created. This field can‘t be received in a message coming through updates, because bot can’t be a member of a supergroup when it is created. It can only be found in reply_to_message if someone replies to a very first message in a directly created supergroup.
+     * @var bool Service message: the supergroup has been created. This field can‘t be received in a message coming through updates, because bot can’t be a member of a supergroup when it is created. It can only be found in reply_to_message if someone replies to a very first message in a directly created supergroup.
      */
     protected $supergroup_chat_created;
 
     /**
-     * @var bool $channel_chat_created Optional. Service message: the channel has been created. This field can‘t be received in a message coming through updates, because bot can’t be a member of a channel when it is created. It can only be found in reply_to_message if someone replies to a very first message in a channel.
+     * @var bool Service message: the channel has been created. This field can‘t be received in a message coming through updates, because bot can’t be a member of a channel when it is created. It can only be found in reply_to_message if someone replies to a very first message in a channel.
      */
     protected $channel_chat_created;
 
     /**
-     * @var int $migrate_to_chat_id Optional. The group has been migrated to a supergroup with the specified identifier.
+     * @var int The group has been migrated to a supergroup with the specified identifier.
      */
     protected $migrate_to_chat_id;
 
     /**
-     * @var int $migrate_from_chat_id Optional. The supergroup has been migrated from a group with the specified identifier.
+     * @var int The supergroup has been migrated from a group with the specified identifier.
      */
     protected $migrate_from_chat_id;
 
     /**
-     * @var Message $pinned_message Optional. Specified message was pinned. Note that the Message object in this field will not contain further reply_to_message fields even if it is itself a reply.
+     * @var Message Specified message was pinned. Note that the Message object in this field will not contain further reply_to_message fields even if it is itself a reply.
      */
     protected $pinned_message;
 
-    public function __construct()
-    {
+    /**
+     * @var Invoice Message is an invoice for a payment, information about the invoice
+     */
+    protected $invoice;
 
-    }
+    /**
+     * @var SuccessfulPayment Message is a service message about a successful payment, information about the payment
+     */
+    protected $successful_payment;
 
     /**
      * @return string
@@ -194,6 +216,16 @@ class Message
     public function getId(): string
     {
         return $this->id;
+    }
+
+    /**
+     * @param string $id
+     * @return Message
+     */
+    public function setId(string $id): Message
+    {
+        $this->id = $id;
+        return $this;
     }
 
     /**
@@ -206,10 +238,12 @@ class Message
 
     /**
      * @param User $from
+     * @return Message
      */
-    public function setFrom(User $from)
+    public function setFrom(User $from): Message
     {
         $this->from = $from;
+        return $this;
     }
 
     /**
@@ -222,10 +256,12 @@ class Message
 
     /**
      * @param int $date
+     * @return Message
      */
-    public function setDate(int $date)
+    public function setDate(int $date): Message
     {
         $this->date = $date;
+        return $this;
     }
 
     /**
@@ -238,10 +274,12 @@ class Message
 
     /**
      * @param Chat $chat
+     * @return Message
      */
-    public function setChat(Chat $chat)
+    public function setChat(Chat $chat): Message
     {
         $this->chat = $chat;
+        return $this;
     }
 
     /**
@@ -254,10 +292,12 @@ class Message
 
     /**
      * @param User $forward_from
+     * @return Message
      */
-    public function setForwardFrom(User $forward_from)
+    public function setForwardFrom(User $forward_from): Message
     {
         $this->forward_from = $forward_from;
+        return $this;
     }
 
     /**
@@ -270,10 +310,30 @@ class Message
 
     /**
      * @param Chat $forward_from_chat
+     * @return Message
      */
-    public function setForwardFromChat(Chat $forward_from_chat)
+    public function setForwardFromChat(Chat $forward_from_chat): Message
     {
         $this->forward_from_chat = $forward_from_chat;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getForwardFromMessageId(): int
+    {
+        return $this->forward_from_message_id;
+    }
+
+    /**
+     * @param int $forward_from_message_id
+     * @return Message
+     */
+    public function setForwardFromMessageId(int $forward_from_message_id): Message
+    {
+        $this->forward_from_message_id = $forward_from_message_id;
+        return $this;
     }
 
     /**
@@ -286,10 +346,12 @@ class Message
 
     /**
      * @param int $forward_date
+     * @return Message
      */
-    public function setForwardDate(int $forward_date)
+    public function setForwardDate(int $forward_date): Message
     {
         $this->forward_date = $forward_date;
+        return $this;
     }
 
     /**
@@ -302,10 +364,12 @@ class Message
 
     /**
      * @param Message $reply_to_message
+     * @return Message
      */
-    public function setReplyToMessage(Message $reply_to_message)
+    public function setReplyToMessage(Message $reply_to_message): Message
     {
         $this->reply_to_message = $reply_to_message;
+        return $this;
     }
 
     /**
@@ -318,10 +382,12 @@ class Message
 
     /**
      * @param int $edit_date
+     * @return Message
      */
-    public function setEditDate(int $edit_date)
+    public function setEditDate(int $edit_date): Message
     {
         $this->edit_date = $edit_date;
+        return $this;
     }
 
     /**
@@ -334,10 +400,12 @@ class Message
 
     /**
      * @param string $text
+     * @return Message
      */
-    public function setText(string $text)
+    public function setText(string $text): Message
     {
         $this->text = $text;
+        return $this;
     }
 
     /**
@@ -350,10 +418,12 @@ class Message
 
     /**
      * @param MessageEntity[] $entities
+     * @return Message
      */
-    public function setEntities(array $entities)
+    public function setEntities(array $entities): Message
     {
         $this->entities = $entities;
+        return $this;
     }
 
     /**
@@ -366,10 +436,12 @@ class Message
 
     /**
      * @param Audio $audio
+     * @return Message
      */
-    public function setAudio(Audio $audio)
+    public function setAudio(Audio $audio): Message
     {
         $this->audio = $audio;
+        return $this;
     }
 
     /**
@@ -382,10 +454,12 @@ class Message
 
     /**
      * @param Document $document
+     * @return Message
      */
-    public function setDocument(Document $document)
+    public function setDocument(Document $document): Message
     {
         $this->document = $document;
+        return $this;
     }
 
     /**
@@ -398,10 +472,12 @@ class Message
 
     /**
      * @param Game $game
+     * @return Message
      */
-    public function setGame(Game $game)
+    public function setGame(Game $game): Message
     {
         $this->game = $game;
+        return $this;
     }
 
     /**
@@ -414,10 +490,12 @@ class Message
 
     /**
      * @param PhotoSize[] $photo
+     * @return Message
      */
-    public function setPhoto(array $photo)
+    public function setPhoto(array $photo): Message
     {
         $this->photo = $photo;
+        return $this;
     }
 
     /**
@@ -430,10 +508,12 @@ class Message
 
     /**
      * @param Sticker $sticker
+     * @return Message
      */
-    public function setSticker(Sticker $sticker)
+    public function setSticker(Sticker $sticker): Message
     {
         $this->sticker = $sticker;
+        return $this;
     }
 
     /**
@@ -446,10 +526,12 @@ class Message
 
     /**
      * @param Video $video
+     * @return Message
      */
-    public function setVideo(Video $video)
+    public function setVideo(Video $video): Message
     {
         $this->video = $video;
+        return $this;
     }
 
     /**
@@ -462,10 +544,48 @@ class Message
 
     /**
      * @param Voice $voice
+     * @return Message
      */
-    public function setVoice(Voice $voice)
+    public function setVoice(Voice $voice): Message
     {
         $this->voice = $voice;
+        return $this;
+    }
+
+    /**
+     * @return VideoNote
+     */
+    public function getVideoNote(): VideoNote
+    {
+        return $this->video_note;
+    }
+
+    /**
+     * @param VideoNote $video_note
+     * @return Message
+     */
+    public function setVideoNote(VideoNote $video_note): Message
+    {
+        $this->video_note = $video_note;
+        return $this;
+    }
+
+    /**
+     * @return User[]
+     */
+    public function getNewChatMembers(): array
+    {
+        return $this->new_chat_members;
+    }
+
+    /**
+     * @param User[] $new_chat_members
+     * @return Message
+     */
+    public function setNewChatMembers(array $new_chat_members): Message
+    {
+        $this->new_chat_members = $new_chat_members;
+        return $this;
     }
 
     /**
@@ -478,10 +598,12 @@ class Message
 
     /**
      * @param string $caption
+     * @return Message
      */
-    public function setCaption(string $caption)
+    public function setCaption(string $caption): Message
     {
         $this->caption = $caption;
+        return $this;
     }
 
     /**
@@ -494,10 +616,12 @@ class Message
 
     /**
      * @param Contact $contact
+     * @return Message
      */
-    public function setContact(Contact $contact)
+    public function setContact(Contact $contact): Message
     {
         $this->contact = $contact;
+        return $this;
     }
 
     /**
@@ -510,10 +634,12 @@ class Message
 
     /**
      * @param Location $location
+     * @return Message
      */
-    public function setLocation(Location $location)
+    public function setLocation(Location $location): Message
     {
         $this->location = $location;
+        return $this;
     }
 
     /**
@@ -526,10 +652,12 @@ class Message
 
     /**
      * @param Venue $venue
+     * @return Message
      */
-    public function setVenue(Venue $venue)
+    public function setVenue(Venue $venue): Message
     {
         $this->venue = $venue;
+        return $this;
     }
 
     /**
@@ -542,10 +670,12 @@ class Message
 
     /**
      * @param User $new_chat_member
+     * @return Message
      */
-    public function setNewChatMember(User $new_chat_member)
+    public function setNewChatMember(User $new_chat_member): Message
     {
         $this->new_chat_member = $new_chat_member;
+        return $this;
     }
 
     /**
@@ -558,10 +688,12 @@ class Message
 
     /**
      * @param User $left_chat_member
+     * @return Message
      */
-    public function setLeftChatMember(User $left_chat_member)
+    public function setLeftChatMember(User $left_chat_member): Message
     {
         $this->left_chat_member = $left_chat_member;
+        return $this;
     }
 
     /**
@@ -574,10 +706,12 @@ class Message
 
     /**
      * @param string $new_chat_title
+     * @return Message
      */
-    public function setNewChatTitle(string $new_chat_title)
+    public function setNewChatTitle(string $new_chat_title): Message
     {
         $this->new_chat_title = $new_chat_title;
+        return $this;
     }
 
     /**
@@ -590,10 +724,12 @@ class Message
 
     /**
      * @param PhotoSize[] $new_chat_photo
+     * @return Message
      */
-    public function setNewChatPhoto(array $new_chat_photo)
+    public function setNewChatPhoto(array $new_chat_photo): Message
     {
         $this->new_chat_photo = $new_chat_photo;
+        return $this;
     }
 
     /**
@@ -606,10 +742,12 @@ class Message
 
     /**
      * @param boolean $delete_chat_photo
+     * @return Message
      */
-    public function setDeleteChatPhoto(bool $delete_chat_photo)
+    public function setDeleteChatPhoto(bool $delete_chat_photo): Message
     {
         $this->delete_chat_photo = $delete_chat_photo;
+        return $this;
     }
 
     /**
@@ -622,10 +760,12 @@ class Message
 
     /**
      * @param boolean $group_chat_created
+     * @return Message
      */
-    public function setGroupChatCreated(bool $group_chat_created)
+    public function setGroupChatCreated(bool $group_chat_created): Message
     {
         $this->group_chat_created = $group_chat_created;
+        return $this;
     }
 
     /**
@@ -638,10 +778,12 @@ class Message
 
     /**
      * @param boolean $supergroup_chat_created
+     * @return Message
      */
-    public function setSupergroupChatCreated(bool $supergroup_chat_created)
+    public function setSupergroupChatCreated(bool $supergroup_chat_created): Message
     {
         $this->supergroup_chat_created = $supergroup_chat_created;
+        return $this;
     }
 
     /**
@@ -654,10 +796,12 @@ class Message
 
     /**
      * @param boolean $channel_chat_created
+     * @return Message
      */
-    public function setChannelChatCreated(bool $channel_chat_created)
+    public function setChannelChatCreated(bool $channel_chat_created): Message
     {
         $this->channel_chat_created = $channel_chat_created;
+        return $this;
     }
 
     /**
@@ -670,10 +814,12 @@ class Message
 
     /**
      * @param int $migrate_to_chat_id
+     * @return Message
      */
-    public function setMigrateToChatId(int $migrate_to_chat_id)
+    public function setMigrateToChatId(int $migrate_to_chat_id): Message
     {
         $this->migrate_to_chat_id = $migrate_to_chat_id;
+        return $this;
     }
 
     /**
@@ -686,10 +832,12 @@ class Message
 
     /**
      * @param int $migrate_from_chat_id
+     * @return Message
      */
-    public function setMigrateFromChatId(int $migrate_from_chat_id)
+    public function setMigrateFromChatId(int $migrate_from_chat_id): Message
     {
         $this->migrate_from_chat_id = $migrate_from_chat_id;
+        return $this;
     }
 
     /**
@@ -702,11 +850,47 @@ class Message
 
     /**
      * @param Message $pinned_message
+     * @return Message
      */
-    public function setPinnedMessage(Message $pinned_message)
+    public function setPinnedMessage(Message $pinned_message): Message
     {
         $this->pinned_message = $pinned_message;
+        return $this;
     }
 
+    /**
+     * @return Invoice
+     */
+    public function getInvoice(): Invoice
+    {
+        return $this->invoice;
+    }
 
+    /**
+     * @param Invoice $invoice
+     * @return Message
+     */
+    public function setInvoice(Invoice $invoice): Message
+    {
+        $this->invoice = $invoice;
+        return $this;
+    }
+
+    /**
+     * @return SuccessfulPayment
+     */
+    public function getSuccessfulPayment(): SuccessfulPayment
+    {
+        return $this->successful_payment;
+    }
+
+    /**
+     * @param SuccessfulPayment $successful_payment
+     * @return Message
+     */
+    public function setSuccessfulPayment(SuccessfulPayment $successful_payment): Message
+    {
+        $this->successful_payment = $successful_payment;
+        return $this;
+    }
 }

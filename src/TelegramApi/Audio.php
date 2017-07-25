@@ -18,22 +18,22 @@ class Audio extends File
 {
 
     /**
-     * @var int $duration Duration of the audio in seconds as defined by sender
+     * @var int Duration of the audio in seconds as defined by sender
      */
     protected $duration;
 
     /**
-     * @var string $performer Optional. Performer of the audio as defined by sender or by audio tags
+     * @var string Performer of the audio as defined by sender or by audio tags
      */
     protected $performer;
 
     /**
-     * @var string $title Optional. Title of the audio as defined by sender or by audio tags
+     * @var string Title of the audio as defined by sender or by audio tags
      */
     protected $title;
 
     /**
-     * @var string $mime_type Optional. MIME type of the file as defined by sender
+     * @var string MIME type of the file as defined by sender
      */
     protected $mime_type;
 
@@ -47,10 +47,12 @@ class Audio extends File
 
     /**
      * @param int $duration
+     * @return Audio
      */
-    public function setDuration(int $duration)
+    public function setDuration(int $duration): Audio
     {
         $this->duration = $duration;
+        return $this;
     }
 
     /**
@@ -63,10 +65,12 @@ class Audio extends File
 
     /**
      * @param string $performer
+     * @return Audio
      */
-    public function setPerformer(string $performer)
+    public function setPerformer(string $performer): Audio
     {
         $this->performer = $performer;
+        return $this;
     }
 
     /**
@@ -79,10 +83,12 @@ class Audio extends File
 
     /**
      * @param string $title
+     * @return Audio
      */
-    public function setTitle(string $title)
+    public function setTitle(string $title): Audio
     {
         $this->title = $title;
+        return $this;
     }
 
     /**
@@ -95,11 +101,11 @@ class Audio extends File
 
     /**
      * @param string $mime_type
+     * @return Audio
      */
-    public function setMimeType(string $mime_type)
+    public function setMimeType(string $mime_type): Audio
     {
         $this->mime_type = $mime_type;
+        return $this;
     }
-
-
 }

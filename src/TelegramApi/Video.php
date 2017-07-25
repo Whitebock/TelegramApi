@@ -18,27 +18,27 @@ class Video extends File
 {
 
     /**
-     * @var int $width Video width as defined by sender
+     * @var int Video width as defined by sender
      */
     protected $width;
 
     /**
-     * @var int $height Video height as defined by sender
+     * @var int Video height as defined by sender
      */
     protected $height;
 
     /**
-     * @var int $duration Duration of the video in seconds as defined by sender
+     * @var int Duration of the video in seconds as defined by sender
      */
     protected $duration;
 
     /**
-     * @var PhotoSize $thumb Optional. Video thumbnail
+     * @var PhotoSize Video thumbnail
      */
     protected $thumb;
 
     /**
-     * @var string $mime_type Optional. Mime type of a file as defined by sender
+     * @var string Mime type of a file as defined by sender
      */
     protected $mime_type;
 
@@ -52,10 +52,12 @@ class Video extends File
 
     /**
      * @param int $width
+     * @return Video
      */
-    public function setWidth(int $width)
+    public function setWidth(int $width): Video
     {
         $this->width = $width;
+        return $this;
     }
 
     /**
@@ -68,10 +70,12 @@ class Video extends File
 
     /**
      * @param int $height
+     * @return Video
      */
-    public function setHeight(int $height)
+    public function setHeight(int $height): Video
     {
         $this->height = $height;
+        return $this;
     }
 
     /**
@@ -84,10 +88,12 @@ class Video extends File
 
     /**
      * @param int $duration
+     * @return Video
      */
-    public function setDuration(int $duration)
+    public function setDuration(int $duration): Video
     {
         $this->duration = $duration;
+        return $this;
     }
 
     /**
@@ -100,10 +106,12 @@ class Video extends File
 
     /**
      * @param PhotoSize $thumb
+     * @return Video
      */
-    public function setThumb(PhotoSize $thumb)
+    public function setThumb(PhotoSize $thumb): Video
     {
         $this->thumb = $thumb;
+        return $this;
     }
 
     /**
@@ -116,11 +124,11 @@ class Video extends File
 
     /**
      * @param string $mime_type
+     * @return Video
      */
-    public function setMimeType(string $mime_type)
+    public function setMimeType(string $mime_type): Video
     {
         $this->mime_type = $mime_type;
+        return $this;
     }
-
-
 }

@@ -18,34 +18,39 @@ namespace Whitebock\TelegramApi;
 class InlineKeyboardButton
 {
     /**
-     * @var string $text Label text on the button
+     * @var string Label text on the button
      */
     protected $text;
 
     /**
-     * @var string $url Optional. HTTP url to be opened when button is pressed
+     * @var string HTTP url to be opened when button is pressed
      */
     protected $url;
 
     /**
-     * @var string $callback_data Optional. Data to be sent in a callback query to the bot when button is pressed, 1-64 bytes
+     * @var string Data to be sent in a callback query to the bot when button is pressed, 1-64 bytes
      */
     protected $callback_data;
 
     /**
-     * @var string $switch_inline_query Optional. If set, pressing the button will prompt the user to select one of their chats, open that chat and insert the bot‘s username and the specified inline query in the input field. Can be empty, in which case just the bot’s username will be inserted.
+     * @var string If set, pressing the button will prompt the user to select one of their chats, open that chat and insert the bot‘s username and the specified inline query in the input field. Can be empty, in which case just the bot’s username will be inserted
      */
     protected $switch_inline_query;
 
     /**
-     * @var string $switch_inline_query_current_chat Optional. If set, pressing the button will insert the bot‘s username and the specified inline query in the current chat's input field. Can be empty, in which case only the bot’s username will be inserted.
+     * @var string If set, pressing the button will insert the bot‘s username and the specified inline query in the current chat's input field. Can be empty, in which case only the bot’s username will be inserted
      */
     protected $switch_inline_query_current_chat;
 
     /**
-     * @var CallbackGame $callback_game Optional. Description of the game that will be launched when the user presses the button. <br><b>NOTE</b>: This type of button must always be the first button in the first row.
+     * @var CallbackGame Description of the game that will be launched when the user presses the button <br><b>NOTE</b>: This type of button must always be the first button in the first row
      */
     protected $callback_game;
+
+    /**
+     * @var bool Specify True, to send a Pay button <br><b>NOTE</b>: This type of button must always be the first button in the first row
+     */
+    protected $pay;
 
     /**
      * @return string
@@ -57,10 +62,12 @@ class InlineKeyboardButton
 
     /**
      * @param string $text
+     * @return InlineKeyboardButton
      */
-    public function setText(string $text)
+    public function setText(string $text): InlineKeyboardButton
     {
         $this->text = $text;
+        return $this;
     }
 
     /**
@@ -73,10 +80,12 @@ class InlineKeyboardButton
 
     /**
      * @param string $url
+     * @return InlineKeyboardButton
      */
-    public function setUrl(string $url)
+    public function setUrl(string $url): InlineKeyboardButton
     {
         $this->url = $url;
+        return $this;
     }
 
     /**
@@ -89,10 +98,12 @@ class InlineKeyboardButton
 
     /**
      * @param string $callback_data
+     * @return InlineKeyboardButton
      */
-    public function setCallbackData(string $callback_data)
+    public function setCallbackData(string $callback_data): InlineKeyboardButton
     {
         $this->callback_data = $callback_data;
+        return $this;
     }
 
     /**
@@ -105,10 +116,12 @@ class InlineKeyboardButton
 
     /**
      * @param string $switch_inline_query
+     * @return InlineKeyboardButton
      */
-    public function setSwitchInlineQuery(string $switch_inline_query)
+    public function setSwitchInlineQuery(string $switch_inline_query): InlineKeyboardButton
     {
         $this->switch_inline_query = $switch_inline_query;
+        return $this;
     }
 
     /**
@@ -121,10 +134,12 @@ class InlineKeyboardButton
 
     /**
      * @param string $switch_inline_query_current_chat
+     * @return InlineKeyboardButton
      */
-    public function setSwitchInlineQueryCurrentChat(string $switch_inline_query_current_chat)
+    public function setSwitchInlineQueryCurrentChat(string $switch_inline_query_current_chat): InlineKeyboardButton
     {
         $this->switch_inline_query_current_chat = $switch_inline_query_current_chat;
+        return $this;
     }
 
     /**
@@ -137,11 +152,29 @@ class InlineKeyboardButton
 
     /**
      * @param CallbackGame $callback_game
+     * @return InlineKeyboardButton
      */
-    public function setCallbackGame(CallbackGame $callback_game)
+    public function setCallbackGame(CallbackGame $callback_game): InlineKeyboardButton
     {
         $this->callback_game = $callback_game;
+        return $this;
     }
 
+    /**
+     * @return boolean
+     */
+    public function isPay(): bool
+    {
+        return $this->pay;
+    }
 
+    /**
+     * @param boolean $pay
+     * @return InlineKeyboardButton
+     */
+    public function setPay(bool $pay): InlineKeyboardButton
+    {
+        $this->pay = $pay;
+        return $this;
+    }
 }

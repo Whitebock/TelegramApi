@@ -17,22 +17,22 @@ namespace Whitebock\TelegramApi;
 class Venue
 {
     /**
-     * @var Location $location Venue location
+     * @var Location Venue location
      */
     protected $location;
 
     /**
-     * @var string $title Name of the venue
+     * @var string Name of the venue
      */
     protected $title;
 
     /**
-     * @var string $address Address of the venue
+     * @var string Address of the venue
      */
     protected $address;
 
     /**
-     * @var string $foursquare_id Optional. Foursquare identifier of the venue
+     * @var string Foursquare identifier of the venue
      */
     protected $foursquare_id;
 
@@ -46,10 +46,12 @@ class Venue
 
     /**
      * @param Location $location
+     * @return Venue
      */
-    public function setLocation(Location $location)
+    public function setLocation(Location $location): Venue
     {
         $this->location = $location;
+        return $this;
     }
 
     /**
@@ -62,10 +64,12 @@ class Venue
 
     /**
      * @param string $title
+     * @return Venue
      */
-    public function setTitle(string $title)
+    public function setTitle(string $title): Venue
     {
         $this->title = $title;
+        return $this;
     }
 
     /**
@@ -78,10 +82,12 @@ class Venue
 
     /**
      * @param string $address
+     * @return Venue
      */
-    public function setAddress(string $address)
+    public function setAddress(string $address): Venue
     {
         $this->address = $address;
+        return $this;
     }
 
     /**
@@ -94,11 +100,11 @@ class Venue
 
     /**
      * @param string $foursquare_id
+     * @return Venue
      */
-    public function setFoursquareId(string $foursquare_id)
+    public function setFoursquareId(string $foursquare_id): Venue
     {
         $this->foursquare_id = $foursquare_id;
+        return $this;
     }
-
-
 }

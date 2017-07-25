@@ -18,37 +18,37 @@ namespace Whitebock\TelegramApi;
 class CallbackQuery
 {
     /**
-     * @var string $id Unique identifier for this query
+     * @var string Unique identifier for this query
      */
     protected $id;
 
     /**
-     * @var User $from Sender
+     * @var User Sender
      */
     protected $from;
 
     /**
-     * @var Message $message Optional. Message with the callback button that originated the query. <br>Note that message content and message date will not be available if the message is too old
+     * @var Message Message with the callback button that originated the query. <br>Note that message content and message date will not be available if the message is too old
      */
     protected $message;
 
     /**
-     * @var string $inline_message_id Optional. Identifier of the message sent via the bot in inline mode, that originated the query.
+     * @var string Identifier of the message sent via the bot in inline mode, that originated the query.
      */
     protected $inline_message_id;
 
     /**
-     * @var string $chat_instance Identifier, uniquely corresponding to the chat to which the message with the callback button was sent. Useful for high scores in games.
+     * @var string Identifier, uniquely corresponding to the chat to which the message with the callback button was sent. Useful for high scores in games.
      */
     protected $chat_instance;
 
     /**
-     * @var string $data Optional. Data associated with the callback button. Be aware that a bad client can send arbitrary data in this field.
+     * @var string Data associated with the callback button. Be aware that a bad client can send arbitrary data in this field.
      */
     protected $data;
 
     /**
-     * @var string $game_short_name Optional. Short name of a Game to be returned, serves as the unique identifier for the game
+     * @var string Short name of a Game to be returned, serves as the unique identifier for the game
      */
     protected $game_short_name;
 
@@ -61,6 +61,16 @@ class CallbackQuery
     }
 
     /**
+     * @param string $id
+     * @return CallbackQuery
+     */
+    public function setId(string $id): CallbackQuery
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
      * @return User
      */
     public function getFrom(): User
@@ -70,10 +80,12 @@ class CallbackQuery
 
     /**
      * @param User $from
+     * @return CallbackQuery
      */
-    public function setFrom(User $from)
+    public function setFrom(User $from): CallbackQuery
     {
         $this->from = $from;
+        return $this;
     }
 
     /**
@@ -86,10 +98,12 @@ class CallbackQuery
 
     /**
      * @param Message $message
+     * @return CallbackQuery
      */
-    public function setMessage(Message $message)
+    public function setMessage(Message $message): CallbackQuery
     {
         $this->message = $message;
+        return $this;
     }
 
     /**
@@ -102,10 +116,12 @@ class CallbackQuery
 
     /**
      * @param string $inline_message_id
+     * @return CallbackQuery
      */
-    public function setInlineMessageId(string $inline_message_id)
+    public function setInlineMessageId(string $inline_message_id): CallbackQuery
     {
         $this->inline_message_id = $inline_message_id;
+        return $this;
     }
 
     /**
@@ -118,10 +134,12 @@ class CallbackQuery
 
     /**
      * @param string $chat_instance
+     * @return CallbackQuery
      */
-    public function setChatInstance(string $chat_instance)
+    public function setChatInstance(string $chat_instance): CallbackQuery
     {
         $this->chat_instance = $chat_instance;
+        return $this;
     }
 
     /**
@@ -134,10 +152,12 @@ class CallbackQuery
 
     /**
      * @param string $data
+     * @return CallbackQuery
      */
-    public function setData(string $data)
+    public function setData(string $data): CallbackQuery
     {
         $this->data = $data;
+        return $this;
     }
 
     /**
@@ -150,11 +170,11 @@ class CallbackQuery
 
     /**
      * @param string $game_short_name
+     * @return CallbackQuery
      */
-    public function setGameShortName(string $game_short_name)
+    public function setGameShortName(string $game_short_name): CallbackQuery
     {
         $this->game_short_name = $game_short_name;
+        return $this;
     }
-
-
 }

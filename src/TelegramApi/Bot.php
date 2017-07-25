@@ -3,8 +3,6 @@
 namespace Whitebock\TelegramApi;
 
 use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
-use Symfony\Component\PropertyInfo\PropertyTypeExtractorInterface;
-use Symfony\Component\PropertyInfo\Type;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
@@ -13,7 +11,7 @@ use Symfony\Component\Serializer\Serializer;
 
 /**
  * Telegram Bot Api - PHP Wrapper
- * For an updated list of all methodes visit
+ * For an updated list of all methods visit
  * https://core.telegram.org/bots/api#available-methods
  *
  * Bot Class
@@ -21,7 +19,6 @@ use Symfony\Component\Serializer\Serializer;
  * For examples visit https://github.com/Whitebock/TelegramBot-ApiWrapper
  *
  * @package TelegramBot-Api
- * @version 1.2
  * @author Sven Drewniok <sven.drewniok@web.de>
  * @author Sven Drewniok @Whitebock
  * @license https://opensource.org/licenses/MIT MIT License

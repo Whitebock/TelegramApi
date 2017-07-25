@@ -18,17 +18,17 @@ namespace Whitebock\TelegramApi;
 class Document extends File
 {
     /**
-     * @var PhotoSize $thumb Optional. Document thumbnail as defined by sender
+     * @var PhotoSize Document thumbnail as defined by sender
      */
     protected $thumb;
 
     /**
-     * @var string $file_name Optional. Original filename as defined by sender
+     * @var string Original filename as defined by sender
      */
     protected $file_name;
 
     /**
-     * @var string $mime_type Optional. MIME type of the file as defined by sender
+     * @var string MIME type of the file as defined by sender
      */
     protected $mime_type;
 
@@ -42,10 +42,12 @@ class Document extends File
 
     /**
      * @param PhotoSize $thumb
+     * @return Document
      */
-    public function setThumb(PhotoSize $thumb)
+    public function setThumb(PhotoSize $thumb): Document
     {
         $this->thumb = $thumb;
+        return $this;
     }
 
     /**
@@ -58,10 +60,12 @@ class Document extends File
 
     /**
      * @param string $file_name
+     * @return Document
      */
-    public function setFileName(string $file_name)
+    public function setFileName(string $file_name): Document
     {
         $this->file_name = $file_name;
+        return $this;
     }
 
     /**
@@ -74,11 +78,11 @@ class Document extends File
 
     /**
      * @param string $mime_type
+     * @return Document
      */
-    public function setMimeType(string $mime_type)
+    public function setMimeType(string $mime_type): Document
     {
         $this->mime_type = $mime_type;
+        return $this;
     }
-
-
 }

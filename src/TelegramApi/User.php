@@ -15,31 +15,31 @@ use Doctrine\ORM\Mapping as ORM;
  * @author Sven Drewniok <sven.drewniok@web.de>
  * @author Sven Drewniok @Whitebock
  * @license https://opensource.org/licenses/MIT MIT License
- * @ORM\Entity()
  */
 class User
 {
     /**
-     * @var int $id Unique identifier for this user or bot
+     * @var int Unique identifier for this user or bot
      */
     protected $id;
 
     /**
-     * @var string $first_name User‘s or bot’s first name
+     * @var string User‘s or bot’s first name
      */
     protected $first_name;
 
     /**
-     * @var string $last_name User‘s or bot’s last name
+     * @var string User‘s or bot’s last name
      */
     protected $last_name;
+
     /**
-     * @var string $username User‘s or bot’s username
+     * @var string User‘s or bot’s username
      */
     protected $username;
 
     /**
-     * @var string $language_code IETF language tag of the user's language
+     * @var string IETF language tag of the user's language
      */
     protected $language_code;
 
@@ -132,6 +132,4 @@ class User
         $this->language_code = $language_code;
         return $this;
     }
-
-
 }

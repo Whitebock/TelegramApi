@@ -14,32 +14,34 @@ namespace Whitebock\TelegramApi;
  * @author Sven Drewniok @Whitebock
  * @license https://opensource.org/licenses/MIT MIT License
  */
-class ReplyKeyboardHide
+class ReplyKeyboardRemove
 {
     /**
-     * @var bool $hide_keyboard Requests clients to hide the custom keyboard
+     * @var bool Requests clients to hide the custom keyboard
      */
-    protected $hide_keyboard;
+    protected $remove_keyboard = true;
 
     /**
-     * @var bool $selective Optional. Use this parameter if you want to hide keyboard for specific users only. Targets: <ol><li>users that are @mentioned in the text of the Message object;</li><li>if the bot's message is a reply (has reply_to_message_id), sender of the original message.</li></ol>
+     * @var bool Use this parameter if you want to hide keyboard for specific users only. Targets: <ol><li>users that are @mentioned in the text of the Message object;</li><li>if the bot's message is a reply (has reply_to_message_id), sender of the original message.</li></ol>
      */
     protected $selective;
 
     /**
      * @return boolean
      */
-    public function isHideKeyboard(): bool
+    public function isRemoveKeyboard(): bool
     {
-        return $this->hide_keyboard;
+        return $this->remove_keyboard;
     }
 
     /**
-     * @param boolean $hide_keyboard
+     * @param boolean $remove_keyboard
+     * @return ReplyKeyboardRemove
      */
-    public function setHideKeyboard(bool $hide_keyboard)
+    public function setRemoveKeyboard(bool $remove_keyboard): ReplyKeyboardRemove
     {
-        $this->hide_keyboard = $hide_keyboard;
+        $this->remove_keyboard = $remove_keyboard;
+        return $this;
     }
 
     /**
@@ -52,11 +54,11 @@ class ReplyKeyboardHide
 
     /**
      * @param boolean $selective
+     * @return ReplyKeyboardRemove
      */
-    public function setSelective(bool $selective)
+    public function setSelective(bool $selective): ReplyKeyboardRemove
     {
         $this->selective = $selective;
+        return $this;
     }
-
-
 }

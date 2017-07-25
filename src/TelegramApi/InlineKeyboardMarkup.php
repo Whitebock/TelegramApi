@@ -17,7 +17,7 @@ namespace Whitebock\TelegramApi;
 class InlineKeyboardMarkup
 {
     /**
-     * @var InlineKeyboardButton[][] $inline_keyboard Array of button rows, each represented by an Array of InlineKeyboardButton objects
+     * @var InlineKeyboardButton[][] Array of button rows, each represented by an Array of InlineKeyboardButton objects
      */
     protected $inline_keyboard;
 
@@ -31,11 +31,11 @@ class InlineKeyboardMarkup
 
     /**
      * @param InlineKeyboardButton[][] $inline_keyboard
+     * @return InlineKeyboardMarkup
      */
-    public function setInlineKeyboard(array $inline_keyboard)
+    public function setInlineKeyboard(array $inline_keyboard): InlineKeyboardMarkup
     {
         $this->inline_keyboard = $inline_keyboard;
+        return $this;
     }
-
-
 }
