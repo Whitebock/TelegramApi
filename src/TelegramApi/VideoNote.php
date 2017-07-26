@@ -23,7 +23,7 @@ class VideoNote extends File
     protected $duration;
 
     /**
-     * @var PhotoSize Video thumbnail
+     * @var Photo Video thumbnail
      */
     protected $thumb;
 
@@ -46,18 +46,18 @@ class VideoNote extends File
     }
 
     /**
-     * @return PhotoSize
+     * @return Photo
      */
-    public function getThumb(): PhotoSize
+    public function getThumb(): Photo
     {
         return $this->thumb;
     }
 
     /**
-     * @param PhotoSize $thumb
+     * @param Photo $thumb
      * @return VideoNote
      */
-    public function setThumb(PhotoSize $thumb): VideoNote
+    public function setThumb(Photo $thumb): VideoNote
     {
         $this->thumb = $thumb;
         return $this;

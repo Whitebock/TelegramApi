@@ -2,7 +2,7 @@
 namespace Whitebock\TelegramApi\Sticker;
 
 use Whitebock\TelegramApi\File;
-use Whitebock\TelegramApi\PhotoSize;
+use Whitebock\TelegramApi\Photo;
 
 /**
  * Telegram Bot Api - PHP Wrapper
@@ -31,7 +31,7 @@ class Sticker extends File
     protected $height;
 
     /**
-     * @var PhotoSize Sticker thumbnail in .webp or .jpg format
+     * @var Photo Sticker thumbnail in .webp or .jpg format
      */
     protected $thumb;
 
@@ -46,7 +46,7 @@ class Sticker extends File
     protected $set_name;
 
     /**
-     * @var MaskPosition  For mask stickers, the position where the mask should be placed
+     * @var MaskPosition For mask stickers, the position where the mask should be placed
      */
     protected $mask_position;
 
@@ -87,18 +87,18 @@ class Sticker extends File
     }
 
     /**
-     * @return PhotoSize
+     * @return Photo
      */
-    public function getThumb(): PhotoSize
+    public function getThumb(): Photo
     {
         return $this->thumb;
     }
 
     /**
-     * @param PhotoSize $thumb
+     * @param Photo $thumb
      * @return Sticker
      */
-    public function setThumb(PhotoSize $thumb): Sticker
+    public function setThumb(Photo $thumb): Sticker
     {
         $this->thumb = $thumb;
         return $this;

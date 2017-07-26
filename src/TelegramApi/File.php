@@ -15,7 +15,7 @@ namespace Whitebock\TelegramApi;
  * @author Sven Drewniok @Whitebock
  * @license https://opensource.org/licenses/MIT MIT License
  */
-class File
+abstract class File
 {
     /**
      * @var string Unique identifier for this file
@@ -33,31 +33,40 @@ class File
     protected $file_path;
 
     /**
-     * @var string $apiurl Baseurl to download the requestet file
+     * @var \CURLFile Local path
      */
-    private $apiurl;
+    protected $local_path;
 
-    public function __construct($apiurl, $token)
+    public static function fromFile(string $path): File
     {
-        $this->apiurl = $apiurl . 'file/bot' . $token . '/';
+        $path = realpath($path);
+        if (!$path) {
+            throw new \Exception('File "'.$path.'" not found');
+        }
+
+        $file = new static();
+        $file->local_path = new \CURLFile($path);
+
+        return $file;
     }
 
     /**
      * Downloads this file to a local file
      *
-     * @param string $to_file The filepath to download to, for example: '/img/test.jpg'
+     * @param string $token Bot token
+     * @param string $to_file The file path to download to, for example: '/img/test.jpg'
      * @return bool Returns true if it was successful
      */
-    public function downloadTo($to_file)
+    public function downloadTo(string $token, string $to_file)
     {
 
-        $rawdata = $this->download();
+        $rawData = $this->download($token);
 
         $fp = fopen($to_file, 'w');
         if ($fp === false) {
             return false;
         }
-        fwrite($fp, $rawdata);
+        fwrite($fp, $rawData);
         fclose($fp);
         return true;
     }
@@ -65,18 +74,18 @@ class File
     /**
      * Downloads this file
      *
+     * @param string $token Bot token
      * @return string The raw file data
      */
-    public function download()
+    public function download(string $token)
     {
-        $ch = curl_init($this->apiurl . $this->file_path);
+        $ch = curl_init(Bot::API_URL . 'file/bot' . $token . '/' . $this->file_path);
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_BINARYTRANSFER, 1);
-        $rawdata = curl_exec($ch);
+        $rawData = curl_exec($ch);
         curl_close($ch);
-
-        return $rawdata;
+        return $rawData;
     }
 
     /**
@@ -133,4 +142,11 @@ class File
         return $this;
     }
 
+    /**
+     * @return \CURLFile
+     */
+    public function getLocalPath(): \CURLFile
+    {
+        return $this->local_path;
+    }
 }

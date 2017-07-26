@@ -83,26 +83,25 @@ class Bot extends User
     }
 
     /**
-     * @param int|string $chat_id Unique identifier for the target chat
+     * @param Chat $chat Target chat
      * @param string $text Text of the message to be sent
      * @param array $options [parse_mode=>string, disable_web_page_preview=>bool, disable_notification=>bool, reply_to_message_id=>int, reply_markup=>ReplyKeyboardMarkup|ReplyKeyboardHide|ForceReply]
      * @return Message The send Message object
      */
-    public function sendMessage($chat_id, $text, $options = null)
+    public function sendMessage(Chat $chat, string $text, array $options = null)
     {
-
-        $postData = array(
-          'chat_id' => $chat_id,
+        $params = [
+          'chat_id' => $chat->getId(),
           'text' => $text
-        );
+        ];
 
         if (isset($options)) {
             $options = $this->serializePOSTData($options);
-            $postData = array_merge($postData, $options);
+            $params = array_merge($params, $options);
         }
 
 
-        $response = $this->callAPI('sendMessage', $postData);
+        $response = $this->callAPI('sendMessage', $params);
         return $this->serializer->deserialize($response, Message::class, 'json');
     }
 
@@ -131,135 +130,17 @@ class Bot extends User
         return $this->serializer->deserialize($response, Message::class, 'json');
     }
 
-    /**
-     * @param int|string $chat_id Unique identifier for the target chat
-     * @param InputFile|string $photo Photo to send
-     * @param array $options [caption=>string, disable_notification=>bool, reply_to_message_id=>int, reply_markup=>ReplyKeyboardMarkup|ReplyKeyboardHide|ForceReply]
-     * @return Message The send Message object
-     */
-    public function sendPhoto($chat_id, $photo, $options = null)
+    public function sendMedia(Chat $chat, File $file)
     {
-        $postData = array(
-          'chat_id' => $chat_id,
-          'photo' => $photo
-        );
+        $params = [
+          'chat_id' => $chat->getId()
+        ];
 
-        if (isset($options)) {
-            $options = $this->serializePOSTData($options);
-            $postData = array_merge($postData, $options);
-        }
+        $tmp = explode('\\', get_class($file));
+        $entity_name = end($tmp);
+        $params[strtolower($entity_name)] = $file->getLocalPath();
 
-        $response = $this->callAPI('sendPhoto', $postData);
-        return $this->serializer->deserialize($response, Message::class, 'json');
-    }
-
-    /**
-     * @param int|string $chat_id Unique identifier for the target chat
-     * @param InputFile|string $audio Audio to send
-     * @param array $options [duration=>int, performer=>string, title=>string, disable_notification=>bool, reply_to_message_id=>int, reply_markup=>ReplyKeyboardMarkup|ReplyKeyboardHide|ForceReply]
-     * @return Message The send Message object
-     */
-    public function sendAudio($chat_id, $audio, $options = null)
-    {
-        $postData = array(
-          'chat_id' => $chat_id,
-          'audio' => $audio
-        );
-
-        if (isset($options)) {
-            $options = $this->serializePOSTData($options);
-            $postData = array_merge($postData, $options);
-        }
-
-        $response = $this->callAPI('sendAudio', $postData);
-        return $this->serializer->deserialize($response, Message::class, 'json');
-    }
-
-    /**
-     * @param int|string $chat_id Unique identifier for the target chat
-     * @param InputFile|string $document Document to send
-     * @param array $options [caption=>string, disable_notification=>bool, reply_to_message_id=>int, reply_markup=>ReplyKeyboardMarkup|ReplyKeyboardHide|ForceReply]
-     * @return Message The send Message object
-     */
-    public function sendDocument($chat_id, $document, $options = null)
-    {
-        $postData = array(
-          'chat_id' => $chat_id,
-          'document' => $document
-        );
-
-        if (isset($options)) {
-            $options = $this->serializePOSTData($options);
-            $postData = array_merge($postData, $options);
-        }
-
-        $response = $this->callAPI('sendDocument', $postData);
-        return $this->serializer->deserialize($response, Message::class, 'json');
-    }
-
-    /**
-     * @param int|string $chat_id Unique identifier for the target chat
-     * @param InputFile|string $sticker Sticker to send
-     * @param array $options [disable_notification=>bool, reply_to_message_id=>int, reply_markup=>ReplyKeyboardMarkup|ReplyKeyboardHide|ForceReply]
-     * @return Message The send Message object
-     */
-    public function sendSticker($chat_id, $sticker, $options = null)
-    {
-        $postData = array(
-          'chat_id' => $chat_id,
-          'sticker' => $sticker
-        );
-
-        if (isset($options)) {
-            $options = $this->serializePOSTData($options);
-            $postData = array_merge($postData, $options);
-        }
-
-        $response = $this->callAPI('sendSticker', $postData);
-        return $this->serializer->deserialize($response, Message::class, 'json');
-    }
-
-    /**
-     * @param int|string $chat_id Unique identifier for the target chat
-     * @param InputFile|string $video Video to send
-     * @param array $options [duration=>int, width=>int, height=>int, caption=>string, disable_notification=>bool, reply_to_message_id=>int, reply_markup=>ReplyKeyboardMarkup|ReplyKeyboardHide|ForceReply]
-     * @return Message The send Message object
-     */
-    public function sendVideo($chat_id, $video, $options = null)
-    {
-        $postData = array(
-          'chat_id' => $chat_id,
-          'video' => $video
-        );
-
-        if (isset($options)) {
-            $options = $this->serializePOSTData($options);
-            $postData = array_merge($postData, $options);
-        }
-
-        $response = $this->callAPI('sendVideo', $postData);
-        return $this->serializer->deserialize($response, Message::class, 'json');
-    }
-
-    /**
-     * @param int|string $chat_id Unique identifier for the target chat
-     * @param InputFile|string $voice Voice to send
-     * @param array $options [duration=>int, disable_notification=>bool, reply_to_message_id=>int, reply_markup=>ReplyKeyboardMarkup|ReplyKeyboardHide|ForceReply]
-     * @return Message The send Message object
-     */
-    public function sendVoice($chat_id, $voice, $options = null)
-    {
-        $postData = array(
-          'chat_id' => $chat_id,
-          'voice' => $voice
-        );
-
-        if (isset($options)) {
-            $options = $this->serializePOSTData($options);
-            $postData = array_merge($postData, $options);
-        }
-
-        $response = $this->callAPI('sendVoice', $postData);
+        $response = $this->callAPI('send'.$entity_name, $params);
         return $this->serializer->deserialize($response, Message::class, 'json');
     }
 
@@ -385,12 +266,13 @@ class Bot extends User
             return false;
         }
 
-        $file = new File($this::API_URL, $this->token);
+        /**
+        $file = new File();
         $file->setFileId($obj->file_id);
         $file->setFileSize($obj->file_size);
         $file->setFilePath($obj->file_path);
-
-        return $file;
+        */
+        return null;
     }
 
     /**
@@ -421,13 +303,13 @@ class Bot extends User
      * @throws \Exception
      */
     private function callAPI(string $method, array $parameters = []) {
-
         $curl = curl_init($this->url.$method);
-        curl_setopt_array($curl, array(
-          CURLOPT_RETURNTRANSFER => 1,
-          CURLOPT_POST => 1,
+        curl_setopt_array($curl, [
+          CURLOPT_SAFE_UPLOAD => true,
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_POST => true,
           CURLOPT_POSTFIELDS => $parameters
-        ));
+        ]);
 
         $json = curl_exec($curl);
         curl_close($curl);

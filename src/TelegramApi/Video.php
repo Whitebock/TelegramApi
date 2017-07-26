@@ -33,7 +33,7 @@ class Video extends File
     protected $duration;
 
     /**
-     * @var PhotoSize Video thumbnail
+     * @var Photo Video thumbnail
      */
     protected $thumb;
 
@@ -97,18 +97,18 @@ class Video extends File
     }
 
     /**
-     * @return PhotoSize
+     * @return Photo
      */
-    public function getThumb(): PhotoSize
+    public function getThumb(): Photo
     {
         return $this->thumb;
     }
 
     /**
-     * @param PhotoSize $thumb
+     * @param Photo $thumb
      * @return Video
      */
-    public function setThumb(PhotoSize $thumb): Video
+    public function setThumb(Photo $thumb): Video
     {
         $this->thumb = $thumb;
         return $this;
