@@ -14,7 +14,7 @@ namespace Whitebock\TelegramApi;
  * @author Sven Drewniok @Whitebock
  * @license https://opensource.org/licenses/MIT MIT License
  */
-class PhotoSize extends File
+class Photo extends File
 {
     /**
      * @var int Photo width
@@ -36,9 +36,9 @@ class PhotoSize extends File
 
     /**
      * @param int $width
-     * @return PhotoSize
+     * @return Photo
      */
-    public function setWidth(int $width): PhotoSize
+    public function setWidth(int $width): Photo
     {
         $this->width = $width;
         return $this;
@@ -54,9 +54,9 @@ class PhotoSize extends File
 
     /**
      * @param int $height
-     * @return PhotoSize
+     * @return Photo
      */
-    public function setHeight(int $height): PhotoSize
+    public function setHeight(int $height): Photo
     {
         $this->height = $height;
         return $this;

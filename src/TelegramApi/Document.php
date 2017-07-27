@@ -18,7 +18,7 @@ namespace Whitebock\TelegramApi;
 class Document extends File
 {
     /**
-     * @var PhotoSize Document thumbnail as defined by sender
+     * @var Photo Document thumbnail as defined by sender
      */
     protected $thumb;
 
@@ -33,18 +33,18 @@ class Document extends File
     protected $mime_type;
 
     /**
-     * @return PhotoSize
+     * @return Photo
      */
-    public function getThumb(): PhotoSize
+    public function getThumb(): Photo
     {
         return $this->thumb;
     }
 
     /**
-     * @param PhotoSize $thumb
+     * @param Photo $thumb
      * @return Document
      */
-    public function setThumb(PhotoSize $thumb): Document
+    public function setThumb(Photo $thumb): Document
     {
         $this->thumb = $thumb;
         return $this;

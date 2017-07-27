@@ -21,9 +21,9 @@ use Whitebock\TelegramApi\Sticker\Sticker;
 class Message
 {
     /**
-     * @var string Unique message identifier
+     * @var int Unique message identifier
      */
-    protected $id;
+    protected $message_id;
 
     /**
      * @var User Optional. Sender, can be empty for messages sent to channels
@@ -96,7 +96,7 @@ class Message
     protected $game;
 
     /**
-     * @var PhotoSize[] Message is a photo, available sizes of the photo
+     * @var Photo[] Message is a photo, available sizes of the photo
      */
     protected $photo;
 
@@ -161,7 +161,7 @@ class Message
     protected $new_chat_title;
 
     /**
-     * @var PhotoSize[] A chat photo was changed to this value
+     * @var Photo[] A chat photo was changed to this value
      */
     protected $new_chat_photo;
 
@@ -211,20 +211,20 @@ class Message
     protected $successful_payment;
 
     /**
-     * @return string
+     * @return int
      */
-    public function getId(): string
+    public function getMessageId(): int
     {
-        return $this->id;
+        return $this->message_id;
     }
 
     /**
-     * @param string $id
+     * @param int $message_id
      * @return Message
      */
-    public function setId(string $id): Message
+    public function setMessageId(int $message_id): Message
     {
-        $this->id = $id;
+        $this->message_id = $message_id;
         return $this;
     }
 
@@ -481,7 +481,7 @@ class Message
     }
 
     /**
-     * @return PhotoSize[]
+     * @return Photo[]
      */
     public function getPhoto(): array
     {
@@ -489,7 +489,7 @@ class Message
     }
 
     /**
-     * @param PhotoSize[] $photo
+     * @param Photo[] $photo
      * @return Message
      */
     public function setPhoto(array $photo): Message
@@ -715,7 +715,7 @@ class Message
     }
 
     /**
-     * @return PhotoSize[]
+     * @return Photo[]
      */
     public function getNewChatPhoto(): array
     {
@@ -723,7 +723,7 @@ class Message
     }
 
     /**
-     * @param PhotoSize[] $new_chat_photo
+     * @param Photo[] $new_chat_photo
      * @return Message
      */
     public function setNewChatPhoto(array $new_chat_photo): Message

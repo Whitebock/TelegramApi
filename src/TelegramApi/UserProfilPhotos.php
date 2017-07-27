@@ -22,7 +22,7 @@ class UserProfilePhotos
     protected $total_count;
 
     /**
-     * @var PhotoSize[][] Requested profile pictures (in up to 4 sizes each)
+     * @var Photo[][] Requested profile pictures (in up to 4 sizes each)
      */
     protected $photos;
 
@@ -45,7 +45,7 @@ class UserProfilePhotos
     }
 
     /**
-     * @return PhotoSize[][]
+     * @return Photo[][]
      */
     public function getPhotos(): array
     {
@@ -53,7 +53,7 @@ class UserProfilePhotos
     }
 
     /**
-     * @param PhotoSize[][] $photos
+     * @param Photo[][] $photos
      * @return UserProfilePhotos
      */
     public function setPhotos(array $photos): UserProfilePhotos
