@@ -21,9 +21,9 @@ use Whitebock\TelegramApi\Sticker\Sticker;
 class Message
 {
     /**
-     * @var string Unique message identifier
+     * @var int Unique message identifier
      */
-    protected $id;
+    protected $message_id;
 
     /**
      * @var User Optional. Sender, can be empty for messages sent to channels
@@ -211,20 +211,20 @@ class Message
     protected $successful_payment;
 
     /**
-     * @return string
+     * @return int
      */
-    public function getId(): string
+    public function getMessageId(): int
     {
-        return $this->id;
+        return $this->message_id;
     }
 
     /**
-     * @param string $id
+     * @param int $message_id
      * @return Message
      */
-    public function setId(string $id): Message
+    public function setMessageId(int $message_id): Message
     {
-        $this->id = $id;
+        $this->message_id = $message_id;
         return $this;
     }
 

@@ -55,10 +55,10 @@ class Bot extends User
     /**
      * @return User Information about the bot in form of a User object
      */
-    public function getMe()
+    public function getMe(): User
     {
         $response = $this->callAPI('getMe');
-        $me = $this->serializer->deserialize($response, User::class, 'json');
+        $me = $this->serializer->denormalize($response, User::class);
         return $me;
     }
 
@@ -66,9 +66,8 @@ class Bot extends User
      * @param array $postData
      * @return array POST data prepared for sending
      */
-    private function serializePOSTData($postData)
+    private function serializePOSTData(array $postData): array
     {
-
         if (isset($postData['reply_markup'])) {
 
             $markup = $postData['reply_markup'];
@@ -88,7 +87,7 @@ class Bot extends User
      * @param array $options [parse_mode=>string, disable_web_page_preview=>bool, disable_notification=>bool, reply_to_message_id=>int, reply_markup=>ReplyKeyboardMarkup|ReplyKeyboardHide|ForceReply]
      * @return Message The send Message object
      */
-    public function sendMessage(Chat $chat, string $text, array $options = null)
+    public function sendMessage(Chat $chat, string $text, array $options = null): Message
     {
         $params = [
           'chat_id' => $chat->getId(),
@@ -102,35 +101,35 @@ class Bot extends User
 
 
         $response = $this->callAPI('sendMessage', $params);
-        return $this->serializer->deserialize($response, Message::class, 'json');
+        return $this->serializer->denormalize($response, Message::class);
     }
 
     /**
-     * @param int|string $chat_id Unique identifier for the target chat
-     * @param int|string $from_chat_id Unique identifier for the original chat
-     * @param int $message_id Unique message identifier
+     * @param Chat $to Target chat
+     * @param Chat $from Chat where the original message was sent
+     * @param Message $message Message to forward
      * @param array $options [disable_notification=>bool]
      * @return Message The send Message object
      */
-    public function forwardMessage($chat_id, $from_chat_id, $message_id, $options = null)
+    public function forwardMessage(Chat $to, Chat $from, Message $message, $options = null): Message
     {
-
-        $postData = array(
-          'chat_id' => $chat_id,
-          'from_chat_id' => $from_chat_id,
-          'message_id' => $message_id
-        );
+        $params = [
+          'chat_id' => $to->getId(),
+          'from_chat_id' => $from->getId(),
+          'message_id' => $message->getMessageId()
+        ];
 
         if (isset($options)) {
             $options = $this->serializePOSTData($options);
-            $postData = array_merge($postData, $options);
+            $params = array_merge($params, $options);
         }
 
-        $response = $this->callAPI('forwardMessage', $postData);
-        return $this->serializer->deserialize($response, Message::class, 'json');
+        $response = $this->callAPI('forwardMessage', $params);
+        //var_dump($response);
+        return $this->serializer->denormalize($response, Message::class);
     }
 
-    public function sendMedia(Chat $chat, File $file)
+    public function sendMedia(Chat $chat, File $file): Message
     {
         $params = [
           'chat_id' => $chat->getId()
@@ -141,7 +140,7 @@ class Bot extends User
         $params[strtolower($entity_name)] = $file->getLocalPath();
 
         $response = $this->callAPI('send'.$entity_name, $params);
-        return $this->serializer->deserialize($response, Message::class, 'json');
+        return $this->serializer->denormalize($response, Message::class);
     }
 
     /**
@@ -165,7 +164,7 @@ class Bot extends User
         }
 
         $response = $this->callAPI('sendLocation', $postData);
-        return $this->serializer->deserialize($response, Message::class, 'json');
+        return $this->serializer->denormalize($response, Message::class);
     }
 
     /**
@@ -193,7 +192,7 @@ class Bot extends User
         }
 
         $response = $this->callAPI('sendVenue', $postData);
-        return $this->serializer->deserialize($response, Message::class, 'json');
+        return $this->serializer->denormalize($response, Message::class);
     }
 
     /**
@@ -217,7 +216,7 @@ class Bot extends User
         }
 
         $response = $this->callAPI('sendContact', $postData);
-        return $this->serializer->deserialize($response, Message::class, 'json');
+        return $this->serializer->denormalize($response, Message::class);
     }
 
     /**
@@ -247,7 +246,7 @@ class Bot extends User
         }
 
         $response = $this->callAPI('getUserProfilePhotos', $postData);
-        return $this->serializer->deserialize($response, UserProfilePhotos::class, 'json');
+        return $this->serializer->denormalize($response, UserProfilePhotos::class);
     }
 
     /**
@@ -282,8 +281,7 @@ class Bot extends User
     public function getUpdates($options = [])
     {
         $response = $this->callAPI('getUpdates', $options);
-        $updates = $this->serializer->deserialize($response, Update::class . '[]', 'json');
-
+        $updates = $this->serializer->denormalize($response, Update::class . '[]');
         return $updates;
     }
 
@@ -318,11 +316,11 @@ class Bot extends User
             throw new \UnexpectedValueException("API call returned an empty response");
         }
 
-        $response = json_decode($json);
+        $response = $this->serializer->decode($json, 'json');
 
-        if (!$response->ok) {
-            throw new \Exception($response->description, $response->error_code);
+        if (!$response['ok']) {
+            throw new \Exception($response['description'], $response['error_code']);
         }
-        return json_encode($response->result);
+        return $response['result'];
     }
 }
