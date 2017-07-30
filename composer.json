@@ -1,5 +1,5 @@
 {
-    "name": "whitebock/telegram-botapi",
+    "name": "whitebock/telegramapi",
     "description": "A PHP Wrapper for the Telegram Bot Api",
     "type": "library",
     "license": "MIT",
@@ -16,8 +16,8 @@
         "symfony/property-info": "^3.3"
     },
     "autoload": {
-	"psr-4": {
-	    "Whitebock\\TelegramApi\\": "src/TelegramApi/"
-	}
+        "psr-4": {
+            "Whitebock\\TelegramApi\\": "src/TelegramApi/"
+        }
     }
 }
