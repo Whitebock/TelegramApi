@@ -144,16 +144,16 @@ class Bot extends User
     }
 
     /**
-     * @param int|string $chat_id Unique identifier for the target chat
+     * @param Chat $chat Unique identifier for the target chat
      * @param float $latitude Latitude of location
      * @param float $longitude Longitude of location
      * @param array $options [disable_notification=>bool, reply_to_message_id=>int, reply_markup=>ReplyKeyboardMarkup|ReplyKeyboardHide|ForceReply]
      * @return Message The send Message object
      */
-    public function sendLocation($chat_id, $latitude, $longitude, $options = null)
+    public function sendLocation(Chat $chat, float $latitude, float $longitude, array $options = null)
     {
         $postData = array(
-          'chat_id' => $chat_id,
+          'chat_id' => $chat->getId(),
           'latitude' => $latitude,
           'longitude' => $longitude
         );
@@ -168,7 +168,7 @@ class Bot extends User
     }
 
     /**
-     * @param int|string $chat_id Unique identifier for the target chat
+     * @param Chat $chat Target chat
      * @param float $latitude Latitude of the venue
      * @param float $longitude Longitude of venue
      * @param string $title Name of the venue
@@ -176,10 +176,10 @@ class Bot extends User
      * @param array $options [foursquare_id=>string, disable_notification=>bool, reply_to_message_id=>int, reply_markup=>ReplyKeyboardMarkup|ReplyKeyboardHide|ForceReply]
      * @return Message The send Message object
      */
-    public function sendVenue($chat_id, $latitude, $longitude, $title, $address, $options = null)
+    public function sendVenue(Chat $chat, float $latitude, float $longitude, string $title, string $address, array $options = null)
     {
         $postData = array(
-          'chat_id' => $chat_id,
+          'chat_id' => $chat->getId(),
           'latitude' => $latitude,
           'longitude' => $longitude,
           'title' => $title,
@@ -196,16 +196,16 @@ class Bot extends User
     }
 
     /**
-     * @param int|string $chat_id Unique identifier for the target chat
+     * @param Chat $chat Target chat
      * @param string $phone_number Contact's phone number
      * @param string $first_name Contact's first name
      * @param array $options [last_name=>string, disable_notification=>bool, reply_to_message_id=>int, reply_markup=>ReplyKeyboardMarkup|ReplyKeyboardHide|ForceReply]
      * @return Message The send Message object
      */
-    public function sendContact($chat_id, $phone_number, $first_name, $options = null)
+    public function sendContact(Chat $chat, string $phone_number, string $first_name, $options = null)
     {
         $postData = array(
-          'chat_id' => $chat_id,
+          'chat_id' => $chat->getId(),
           'phone_number' => $phone_number,
           'first_name' => $first_name
         );
@@ -220,13 +220,13 @@ class Bot extends User
     }
 
     /**
-     * @param int|string $chat_id Unique identifier for the target chat
-     * @param string $action Type of action to broadcast [typing, upload_photo, record_video, upload_video, record_audio, upload_audio, upload_document, find_location]
+     * @param Chat $chat Target chat
+     * @param string $action Type of action to broadcast
      */
-    public function sendChatAction($chat_id, $action)
+    public function sendChatAction(Chat $chat, $action)
     {
         $postData = array(
-          'chat_id' => $chat_id,
+          'chat_id' => $chat->getId(),
           'action' => $action
         );
         $this->callAPI('sendChatAction', $postData);
@@ -291,7 +291,7 @@ class Bot extends User
      */
     public function setWebHook($options = null)
     {
-        return $this->callAPI('setWebhook', $options);;
+        return $this->callAPI('setWebhook', $options);
     }
 
     /**
