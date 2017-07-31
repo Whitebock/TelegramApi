@@ -1,5 +1,6 @@
 # Telegram BotApi
 A PHP Wrapper for the [Telegram Bot Api](https://core.telegram.org/bots/api)
+Currently being refactored, see the latest [releases](https://github.com/Whitebock/TelegramBot-ApiWrapper/releases") for a stable version.
 
 <span ><a href="https://www.paypal.me/SvenDrewniok" title="Donate"><img src="https://img.shields.io/badge/donate-paypal-blue.svg" alt="Donate on PayPal" /></a></span>
 
@@ -10,13 +11,11 @@ A PHP Wrapper for the [Telegram Bot Api](https://core.telegram.org/bots/api)
 * [Usage / Demo Bot](#demo)
 * [Changelog](#changelog)
   * [Unreleased](#unreleased)
-  * [Latest Version](#1.2.0)
+  * [Latest Version](#120)
     * [Download](https://github.com/Whitebock/TelegramApi/releases/tag/1.2.0)
 
 
 ## Todo
-
-Currently being refactored, see the latest <a href="https://github.com/Whitebock/TelegramBot-ApiWrapper/releases">releases</a> for a stable version.
 
 - [ ] Bot Api 3.2
 - [ ] Complete send functions
