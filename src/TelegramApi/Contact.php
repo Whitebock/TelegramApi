@@ -98,14 +98,4 @@ class Contact
     {
         return $this->user_id;
     }
-
-    /**
-     * @param int $user_id
-     * @return Contact
-     */
-    public function setUserId(int $user_id): Contact
-    {
-        $this->user_id = $user_id;
-        return $this;
-    }
 }

@@ -50,31 +50,11 @@ class MessageEntity
     }
 
     /**
-     * @param string $type
-     * @return MessageEntity
-     */
-    public function setType(string $type): MessageEntity
-    {
-        $this->type = $type;
-        return $this;
-    }
-
-    /**
      * @return int
      */
     public function getOffset(): int
     {
         return $this->offset;
-    }
-
-    /**
-     * @param int $offset
-     * @return MessageEntity
-     */
-    public function setOffset(int $offset): MessageEntity
-    {
-        $this->offset = $offset;
-        return $this;
     }
 
     /**
@@ -86,16 +66,6 @@ class MessageEntity
     }
 
     /**
-     * @param int $length
-     * @return MessageEntity
-     */
-    public function setLength(int $length): MessageEntity
-    {
-        $this->length = $length;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getUrl(): string
@@ -104,30 +74,10 @@ class MessageEntity
     }
 
     /**
-     * @param string $url
-     * @return MessageEntity
-     */
-    public function setUrl(string $url): MessageEntity
-    {
-        $this->url = $url;
-        return $this;
-    }
-
-    /**
      * @return User
      */
     public function getUser(): User
     {
         return $this->user;
-    }
-
-    /**
-     * @param User $user
-     * @return MessageEntity
-     */
-    public function setUser(User $user): MessageEntity
-    {
-        $this->user = $user;
-        return $this;
     }
 }

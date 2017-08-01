@@ -35,30 +35,10 @@ class ResponseParameters
     }
 
     /**
-     * @param int $migrate_to_chat_id
-     * @return ResponseParameters
-     */
-    public function setMigrateToChatId(int $migrate_to_chat_id): ResponseParameters
-    {
-        $this->migrate_to_chat_id = $migrate_to_chat_id;
-        return $this;
-    }
-
-    /**
      * @return int
      */
     public function getRetryAfter(): int
     {
         return $this->retry_after;
-    }
-
-    /**
-     * @param int $retry_after
-     * @return ResponseParameters
-     */
-    public function setRetryAfter(int $retry_after): ResponseParameters
-    {
-        $this->retry_after = $retry_after;
-        return $this;
     }
 }

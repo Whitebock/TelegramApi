@@ -106,31 +106,11 @@ class ChatMember
     }
 
     /**
-     * @param User $user
-     * @return ChatMember
-     */
-    public function setUser(User $user): ChatMember
-    {
-        $this->user = $user;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getStatus(): string
     {
         return $this->status;
-    }
-
-    /**
-     * @param string $status
-     * @return ChatMember
-     */
-    public function setStatus(string $status): ChatMember
-    {
-        $this->status = $status;
-        return $this;
     }
 
     /**
@@ -142,248 +122,106 @@ class ChatMember
     }
 
     /**
-     * @param int $until_date
-     * @return ChatMember
-     */
-    public function setUntilDate(int $until_date): ChatMember
-    {
-        $this->until_date = $until_date;
-        return $this;
-    }
-
-    /**
      * @return boolean
      */
-    public function isCanBeEdited(): bool
+    public function canBeEdited(): bool
     {
         return $this->can_be_edited;
     }
 
     /**
-     * @param boolean $can_be_edited
-     * @return ChatMember
-     */
-    public function setCanBeEdited(bool $can_be_edited): ChatMember
-    {
-        $this->can_be_edited = $can_be_edited;
-        return $this;
-    }
-
-    /**
      * @return boolean
      */
-    public function isCanChangeInfo(): bool
+    public function canChangeInfo(): bool
     {
         return $this->can_change_info;
     }
 
     /**
-     * @param boolean $can_change_info
-     * @return ChatMember
-     */
-    public function setCanChangeInfo(bool $can_change_info): ChatMember
-    {
-        $this->can_change_info = $can_change_info;
-        return $this;
-    }
-
-    /**
      * @return boolean
      */
-    public function isCanPostMessages(): bool
+    public function canPostMessages(): bool
     {
         return $this->can_post_messages;
     }
 
     /**
-     * @param boolean $can_post_messages
-     * @return ChatMember
-     */
-    public function setCanPostMessages(bool $can_post_messages): ChatMember
-    {
-        $this->can_post_messages = $can_post_messages;
-        return $this;
-    }
-
-    /**
      * @return boolean
      */
-    public function isCanEditMessages(): bool
+    public function canEditMessages(): bool
     {
         return $this->can_edit_messages;
     }
 
     /**
-     * @param boolean $can_edit_messages
-     * @return ChatMember
-     */
-    public function setCanEditMessages(bool $can_edit_messages): ChatMember
-    {
-        $this->can_edit_messages = $can_edit_messages;
-        return $this;
-    }
-
-    /**
      * @return boolean
      */
-    public function isCanDeleteMessages(): bool
+    public function canDeleteMessages(): bool
     {
         return $this->can_delete_messages;
     }
 
     /**
-     * @param boolean $can_delete_messages
-     * @return ChatMember
-     */
-    public function setCanDeleteMessages(bool $can_delete_messages): ChatMember
-    {
-        $this->can_delete_messages = $can_delete_messages;
-        return $this;
-    }
-
-    /**
      * @return boolean
      */
-    public function isCanInviteUsers(): bool
+    public function canInviteUsers(): bool
     {
         return $this->can_invite_users;
     }
 
     /**
-     * @param boolean $can_invite_users
-     * @return ChatMember
-     */
-    public function setCanInviteUsers(bool $can_invite_users): ChatMember
-    {
-        $this->can_invite_users = $can_invite_users;
-        return $this;
-    }
-
-    /**
      * @return boolean
      */
-    public function isCanRestrictMembers(): bool
+    public function canRestrictMembers(): bool
     {
         return $this->can_restrict_members;
     }
 
     /**
-     * @param boolean $can_restrict_members
-     * @return ChatMember
-     */
-    public function setCanRestrictMembers(bool $can_restrict_members): ChatMember
-    {
-        $this->can_restrict_members = $can_restrict_members;
-        return $this;
-    }
-
-    /**
      * @return boolean
      */
-    public function isCanPinMessages(): bool
+    public function canPinMessages(): bool
     {
         return $this->can_pin_messages;
     }
 
     /**
-     * @param boolean $can_pin_messages
-     * @return ChatMember
-     */
-    public function setCanPinMessages(bool $can_pin_messages): ChatMember
-    {
-        $this->can_pin_messages = $can_pin_messages;
-        return $this;
-    }
-
-    /**
      * @return boolean
      */
-    public function isCanPromoteMembers(): bool
+    public function canPromoteMembers(): bool
     {
         return $this->can_promote_members;
     }
 
     /**
-     * @param boolean $can_promote_members
-     * @return ChatMember
-     */
-    public function setCanPromoteMembers(bool $can_promote_members): ChatMember
-    {
-        $this->can_promote_members = $can_promote_members;
-        return $this;
-    }
-
-    /**
      * @return boolean
      */
-    public function isCanSendMessages(): bool
+    public function canSendMessages(): bool
     {
         return $this->can_send_messages;
     }
 
     /**
-     * @param boolean $can_send_messages
-     * @return ChatMember
-     */
-    public function setCanSendMessages(bool $can_send_messages): ChatMember
-    {
-        $this->can_send_messages = $can_send_messages;
-        return $this;
-    }
-
-    /**
      * @return boolean
      */
-    public function isCanSendMediaMessages(): bool
+    public function canSendMediaMessages(): bool
     {
         return $this->can_send_media_messages;
     }
 
     /**
-     * @param boolean $can_send_media_messages
-     * @return ChatMember
-     */
-    public function setCanSendMediaMessages(bool $can_send_media_messages): ChatMember
-    {
-        $this->can_send_media_messages = $can_send_media_messages;
-        return $this;
-    }
-
-    /**
      * @return boolean
      */
-    public function isCanSendOtherMessages(): bool
+    public function canSendOtherMessages(): bool
     {
         return $this->can_send_other_messages;
     }
 
     /**
-     * @param boolean $can_send_other_messages
-     * @return ChatMember
-     */
-    public function setCanSendOtherMessages(bool $can_send_other_messages): ChatMember
-    {
-        $this->can_send_other_messages = $can_send_other_messages;
-        return $this;
-    }
-
-    /**
      * @return boolean
      */
-    public function isCanAddWebPagePreviews(): bool
+    public function canAddWebPagePreviews(): bool
     {
         return $this->can_add_web_page_previews;
     }
-
-    /**
-     * @param boolean $can_add_web_page_previews
-     * @return ChatMember
-     */
-    public function setCanAddWebPagePreviews(bool $can_add_web_page_previews): ChatMember
-    {
-        $this->can_add_web_page_previews = $can_add_web_page_previews;
-        return $this;
-    }
-
-
 }

@@ -35,30 +35,10 @@ class UserProfilePhotos
     }
 
     /**
-     * @param mixed $total_count
-     * @return UserProfilePhotos
-     */
-    public function setTotalCount($total_count)
-    {
-        $this->total_count = $total_count;
-        return $this;
-    }
-
-    /**
      * @return Photo[][]
      */
     public function getPhotos(): array
     {
         return $this->photos;
-    }
-
-    /**
-     * @param Photo[][] $photos
-     * @return UserProfilePhotos
-     */
-    public function setPhotos(array $photos): UserProfilePhotos
-    {
-        $this->photos = $photos;
-        return $this;
     }
 }

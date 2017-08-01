@@ -52,31 +52,11 @@ class User
     }
 
     /**
-     * @param int $id
-     * @return User
-     */
-    public function setId(int $id): User
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getFirstName(): string
     {
         return $this->first_name;
-    }
-
-    /**
-     * @param string $first_name
-     * @return User
-     */
-    public function setFirstName(string $first_name): User
-    {
-        $this->first_name = $first_name;
-        return $this;
     }
 
     /**
@@ -88,16 +68,6 @@ class User
     }
 
     /**
-     * @param string $last_name
-     * @return User
-     */
-    public function setLastName(string $last_name): User
-    {
-        $this->last_name = $last_name;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getUsername(): string
@@ -106,30 +76,10 @@ class User
     }
 
     /**
-     * @param string $username
-     * @return User
-     */
-    public function setUsername(string $username): User
-    {
-        $this->username = $username;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getLanguageCode(): string
     {
         return $this->language_code;
-    }
-
-    /**
-     * @param string $language_code
-     * @return User
-     */
-    public function setLanguageCode(string $language_code): User
-    {
-        $this->language_code = $language_code;
-        return $this;
     }
 }

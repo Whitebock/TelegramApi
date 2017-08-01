@@ -91,19 +91,9 @@ abstract class File
     /**
      * @return string
      */
-    public function getFileId(): string
+    public function getId(): string
     {
         return $this->file_id;
-    }
-
-    /**
-     * @param string $file_id
-     * @return File
-     */
-    public function setFileId(string $file_id): File
-    {
-        $this->file_id = $file_id;
-        return $this;
     }
 
     /**
@@ -121,24 +111,6 @@ abstract class File
     public function setFileSize(int $file_size): File
     {
         $this->file_size = $file_size;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFilePath(): string
-    {
-        return $this->file_path;
-    }
-
-    /**
-     * @param string $file_path
-     * @return File
-     */
-    public function setFilePath(string $file_path): File
-    {
-        $this->file_path = $file_path;
         return $this;
     }
 

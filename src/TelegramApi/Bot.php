@@ -4,8 +4,8 @@ namespace Whitebock\TelegramApi;
 
 use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
+use Symfony\Component\Serializer\Normalizer\PropertyNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
 
@@ -49,7 +49,7 @@ class Bot extends User
     {
         $this->token = $token;
         $this->url = $this::API_URL . 'bot' . $this->token . '/';
-        $this->serializer = new Serializer([new ObjectNormalizer(null, null, null, new ReflectionExtractor()), new ArrayDenormalizer()], [new JsonEncoder()]);
+        $this->serializer = new Serializer([new PropertyNormalizer(null, null, new ReflectionExtractor()), new ArrayDenormalizer()], [new JsonEncoder()]);
     }
 
     /**
@@ -129,6 +129,11 @@ class Bot extends User
         return $this->serializer->denormalize($response, Message::class);
     }
 
+    /**
+     * @param Chat $chat Target chat
+     * @param File $file Media to send
+     * @return Message The send Message object
+     */
     public function sendMedia(Chat $chat, File $file): Message
     {
         $params = [

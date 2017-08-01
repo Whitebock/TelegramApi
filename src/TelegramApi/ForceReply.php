@@ -36,16 +36,6 @@ class ForceReply
     }
 
     /**
-     * @param boolean $force_reply
-     * @return ForceReply
-     */
-    public function setForceReply(bool $force_reply): ForceReply
-    {
-        $this->force_reply = $force_reply;
-        return $this;
-    }
-
-    /**
      * @return boolean
      */
     public function isSelective(): bool

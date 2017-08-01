@@ -36,30 +36,10 @@ class ChatPhoto
     }
 
     /**
-     * @param string $small_file_id
-     * @return ChatPhoto
-     */
-    public function setSmallFileId(string $small_file_id): ChatPhoto
-    {
-        $this->small_file_id = $small_file_id;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getBigFileId(): string
     {
         return $this->big_file_id;
-    }
-
-    /**
-     * @param string $big_file_id
-     * @return ChatPhoto
-     */
-    public function setBigFileId(string $big_file_id): ChatPhoto
-    {
-        $this->big_file_id = $big_file_id;
-        return $this;
     }
 }

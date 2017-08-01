@@ -50,31 +50,11 @@ class WebhookInfo
     }
 
     /**
-     * @param string $url
-     * @return WebhookInfo
-     */
-    public function setUrl(string $url): WebhookInfo
-    {
-        $this->url = $url;
-        return $this;
-    }
-
-    /**
      * @return boolean
      */
-    public function isHasCustomCertificate(): bool
+    public function getHasCustomCertificate(): bool
     {
         return $this->has_custom_certificate;
-    }
-
-    /**
-     * @param boolean $has_custom_certificate
-     * @return WebhookInfo
-     */
-    public function setHasCustomCertificate(bool $has_custom_certificate): WebhookInfo
-    {
-        $this->has_custom_certificate = $has_custom_certificate;
-        return $this;
     }
 
     /**
@@ -86,16 +66,6 @@ class WebhookInfo
     }
 
     /**
-     * @param int $pending_update_count
-     * @return WebhookInfo
-     */
-    public function setPendingUpdateCount(int $pending_update_count): WebhookInfo
-    {
-        $this->pending_update_count = $pending_update_count;
-        return $this;
-    }
-
-    /**
      * @return int
      */
     public function getLastErrorDate(): int
@@ -104,30 +74,10 @@ class WebhookInfo
     }
 
     /**
-     * @param int $last_error_date
-     * @return WebhookInfo
-     */
-    public function setLastErrorDate(int $last_error_date): WebhookInfo
-    {
-        $this->last_error_date = $last_error_date;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getLastErrorMessage(): string
     {
         return $this->last_error_message;
-    }
-
-    /**
-     * @param string $last_error_message
-     * @return WebhookInfo
-     */
-    public function setLastErrorMessage(string $last_error_message): WebhookInfo
-    {
-        $this->last_error_message = $last_error_message;
-        return $this;
     }
 }

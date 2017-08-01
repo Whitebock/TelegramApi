@@ -211,21 +211,21 @@ class Message
     protected $successful_payment;
 
     /**
-     * @return int
+     * @var bool Sends the message silently. Users will receive a notification with no sound
      */
-    public function getMessageId(): int
-    {
-        return $this->message_id;
-    }
+    protected $disable_notification;
 
     /**
-     * @param int $message_id
-     * @return Message
+     * @var InlineKeyboardMarkup|ReplyKeyboardMarkup|ReplyKeyboardRemove|ForceReply Additional interface options
      */
-    public function setMessageId(int $message_id): Message
+    protected $reply_markup;
+
+    /**
+     * @return int
+     */
+    public function getId(): int
     {
-        $this->message_id = $message_id;
-        return $this;
+        return $this->message_id;
     }
 
     /**
@@ -237,31 +237,11 @@ class Message
     }
 
     /**
-     * @param User $from
-     * @return Message
-     */
-    public function setFrom(User $from): Message
-    {
-        $this->from = $from;
-        return $this;
-    }
-
-    /**
      * @return int
      */
     public function getDate(): int
     {
         return $this->date;
-    }
-
-    /**
-     * @param int $date
-     * @return Message
-     */
-    public function setDate(int $date): Message
-    {
-        $this->date = $date;
-        return $this;
     }
 
     /**
@@ -273,31 +253,11 @@ class Message
     }
 
     /**
-     * @param Chat $chat
-     * @return Message
-     */
-    public function setChat(Chat $chat): Message
-    {
-        $this->chat = $chat;
-        return $this;
-    }
-
-    /**
      * @return User
      */
     public function getForwardFrom(): User
     {
         return $this->forward_from;
-    }
-
-    /**
-     * @param User $forward_from
-     * @return Message
-     */
-    public function setForwardFrom(User $forward_from): Message
-    {
-        $this->forward_from = $forward_from;
-        return $this;
     }
 
     /**
@@ -309,16 +269,6 @@ class Message
     }
 
     /**
-     * @param Chat $forward_from_chat
-     * @return Message
-     */
-    public function setForwardFromChat(Chat $forward_from_chat): Message
-    {
-        $this->forward_from_chat = $forward_from_chat;
-        return $this;
-    }
-
-    /**
      * @return int
      */
     public function getForwardFromMessageId(): int
@@ -327,31 +277,11 @@ class Message
     }
 
     /**
-     * @param int $forward_from_message_id
-     * @return Message
-     */
-    public function setForwardFromMessageId(int $forward_from_message_id): Message
-    {
-        $this->forward_from_message_id = $forward_from_message_id;
-        return $this;
-    }
-
-    /**
      * @return int
      */
     public function getForwardDate(): int
     {
         return $this->forward_date;
-    }
-
-    /**
-     * @param int $forward_date
-     * @return Message
-     */
-    public function setForwardDate(int $forward_date): Message
-    {
-        $this->forward_date = $forward_date;
-        return $this;
     }
 
     /**
@@ -381,16 +311,6 @@ class Message
     }
 
     /**
-     * @param int $edit_date
-     * @return Message
-     */
-    public function setEditDate(int $edit_date): Message
-    {
-        $this->edit_date = $edit_date;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getText(): string
@@ -414,16 +334,6 @@ class Message
     public function getEntities(): array
     {
         return $this->entities;
-    }
-
-    /**
-     * @param MessageEntity[] $entities
-     * @return Message
-     */
-    public function setEntities(array $entities): Message
-    {
-        $this->entities = $entities;
-        return $this;
     }
 
     /**
@@ -579,16 +489,6 @@ class Message
     }
 
     /**
-     * @param User[] $new_chat_members
-     * @return Message
-     */
-    public function setNewChatMembers(array $new_chat_members): Message
-    {
-        $this->new_chat_members = $new_chat_members;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getCaption(): string
@@ -669,31 +569,11 @@ class Message
     }
 
     /**
-     * @param User $new_chat_member
-     * @return Message
-     */
-    public function setNewChatMember(User $new_chat_member): Message
-    {
-        $this->new_chat_member = $new_chat_member;
-        return $this;
-    }
-
-    /**
      * @return User
      */
     public function getLeftChatMember(): User
     {
         return $this->left_chat_member;
-    }
-
-    /**
-     * @param User $left_chat_member
-     * @return Message
-     */
-    public function setLeftChatMember(User $left_chat_member): Message
-    {
-        $this->left_chat_member = $left_chat_member;
-        return $this;
     }
 
     /**
@@ -705,31 +585,11 @@ class Message
     }
 
     /**
-     * @param string $new_chat_title
-     * @return Message
-     */
-    public function setNewChatTitle(string $new_chat_title): Message
-    {
-        $this->new_chat_title = $new_chat_title;
-        return $this;
-    }
-
-    /**
      * @return Photo[]
      */
     public function getNewChatPhoto(): array
     {
         return $this->new_chat_photo;
-    }
-
-    /**
-     * @param Photo[] $new_chat_photo
-     * @return Message
-     */
-    public function setNewChatPhoto(array $new_chat_photo): Message
-    {
-        $this->new_chat_photo = $new_chat_photo;
-        return $this;
     }
 
     /**
@@ -741,31 +601,11 @@ class Message
     }
 
     /**
-     * @param boolean $delete_chat_photo
-     * @return Message
-     */
-    public function setDeleteChatPhoto(bool $delete_chat_photo): Message
-    {
-        $this->delete_chat_photo = $delete_chat_photo;
-        return $this;
-    }
-
-    /**
      * @return boolean
      */
     public function isGroupChatCreated(): bool
     {
         return $this->group_chat_created;
-    }
-
-    /**
-     * @param boolean $group_chat_created
-     * @return Message
-     */
-    public function setGroupChatCreated(bool $group_chat_created): Message
-    {
-        $this->group_chat_created = $group_chat_created;
-        return $this;
     }
 
     /**
@@ -777,31 +617,11 @@ class Message
     }
 
     /**
-     * @param boolean $supergroup_chat_created
-     * @return Message
-     */
-    public function setSupergroupChatCreated(bool $supergroup_chat_created): Message
-    {
-        $this->supergroup_chat_created = $supergroup_chat_created;
-        return $this;
-    }
-
-    /**
      * @return boolean
      */
     public function isChannelChatCreated(): bool
     {
         return $this->channel_chat_created;
-    }
-
-    /**
-     * @param boolean $channel_chat_created
-     * @return Message
-     */
-    public function setChannelChatCreated(bool $channel_chat_created): Message
-    {
-        $this->channel_chat_created = $channel_chat_created;
-        return $this;
     }
 
     /**
@@ -813,31 +633,11 @@ class Message
     }
 
     /**
-     * @param int $migrate_to_chat_id
-     * @return Message
-     */
-    public function setMigrateToChatId(int $migrate_to_chat_id): Message
-    {
-        $this->migrate_to_chat_id = $migrate_to_chat_id;
-        return $this;
-    }
-
-    /**
      * @return int
      */
     public function getMigrateFromChatId(): int
     {
         return $this->migrate_from_chat_id;
-    }
-
-    /**
-     * @param int $migrate_from_chat_id
-     * @return Message
-     */
-    public function setMigrateFromChatId(int $migrate_from_chat_id): Message
-    {
-        $this->migrate_from_chat_id = $migrate_from_chat_id;
-        return $this;
     }
 
     /**
@@ -885,12 +685,38 @@ class Message
     }
 
     /**
-     * @param SuccessfulPayment $successful_payment
+     * @return boolean
+     */
+    public function isDisableNotification(): bool
+    {
+        return $this->disable_notification;
+    }
+
+    /**
+     * @param boolean $disable_notification
      * @return Message
      */
-    public function setSuccessfulPayment(SuccessfulPayment $successful_payment): Message
+    public function setDisableNotification(bool $disable_notification): Message
     {
-        $this->successful_payment = $successful_payment;
+        $this->disable_notification = $disable_notification;
+        return $this;
+    }
+
+    /**
+     * @return ForceReply|InlineKeyboardMarkup|ReplyKeyboardMarkup|ReplyKeyboardRemove
+     */
+    public function getMarkup()
+    {
+        return $this->reply_markup;
+    }
+
+    /**
+     * @param ForceReply|InlineKeyboardMarkup|ReplyKeyboardMarkup|ReplyKeyboardRemove $reply_markup
+     * @return Message
+     */
+    public function setMarkup($reply_markup)
+    {
+        $this->reply_markup = $reply_markup;
         return $this;
     }
 }
