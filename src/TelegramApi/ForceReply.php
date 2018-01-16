@@ -1,19 +1,22 @@
 <?php
 
+/*
+ * This file is part of the Telegram Bot API wrapper.
+ *
+ * (c) Sven Drewniok <sven.drewniok@web.de>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Whitebock\TelegramApi;
 
 /**
- * Telegram Bot Api - PHP Wrapper
- * For an updated description of this class visit
- * https://core.telegram.org/bots/api#forcereply
- *
- * ForceReply Class
  * Upon receiving a message with this object, Telegram clients will display a reply interface to the user (act as if the user has selected the bot‘s message and tapped ’Reply'). This can be extremely useful if you want to create user-friendly step-by-step interfaces without having to sacrifice privacy mode.
  *
- * @package TelegramBot-Api
+ * @see https://core.telegram.org/bots/api#forcereply Up-to-date description of this class
  * @author Sven Drewniok <sven.drewniok@web.de>
  * @author Sven Drewniok @Whitebock
- * @license https://opensource.org/licenses/MIT MIT License
  */
 class ForceReply
 {

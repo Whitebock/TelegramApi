@@ -1,18 +1,22 @@
 <?php
+
+/*
+ * This file is part of the Telegram Bot API wrapper.
+ *
+ * (c) Sven Drewniok <sven.drewniok@web.de>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Whitebock\TelegramApi;
 
 /**
- * Telegram Bot Api - PHP Wrapper
- * For an updated description of this class visit
- * https://core.telegram.org/bots/api#inlinekeyboardmarkup
- *
- * InlineKeyboardMarkup Class
  * This object represents an inline keyboard that appears right next to the message it belongs to.
  *
- * @package TelegramBot-Api
+ * @see https://core.telegram.org/bots/api#inlinekeyboardmarkup Up-to-date description of this class
  * @author Sven Drewniok <sven.drewniok@web.de>
  * @author Sven Drewniok @Whitebock
- * @license https://opensource.org/licenses/MIT MIT License
  */
 class InlineKeyboardMarkup
 {

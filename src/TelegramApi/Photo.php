@@ -1,18 +1,22 @@
 <?php
+
+/*
+ * This file is part of the Telegram Bot API wrapper.
+ *
+ * (c) Sven Drewniok <sven.drewniok@web.de>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Whitebock\TelegramApi;
 
 /**
- * Telegram Bot Api - PHP Wrapper
- * For an updated description of this class visit
- * https://core.telegram.org/bots/api#photosize
- *
- * PhotoSize Class
  * This object represents one size of a photo or a file / sticker thumbnail.
  *
- * @package TelegramBot-Api
+ * @see ttps://core.telegram.org/bots/api#photosize Up-to-date description of this class
  * @author Sven Drewniok <sven.drewniok@web.de>
  * @author Sven Drewniok @Whitebock
- * @license https://opensource.org/licenses/MIT MIT License
  */
 class Photo extends File
 {

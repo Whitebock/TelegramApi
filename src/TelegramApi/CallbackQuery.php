@@ -1,19 +1,22 @@
 <?php
 
+/*
+ * This file is part of the Telegram Bot API wrapper.
+ *
+ * (c) Sven Drewniok <sven.drewniok@web.de>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Whitebock\TelegramApi;
 
 /**
- * Telegram Bot Api - PHP Wrapper
- * For an updated description of this class visit
- * https://core.telegram.org/bots/api#callbackquery
- *
- * CallbackQuery Class
  * This object represents an incoming callback query from a callback button in an inline keyboard. If the button that originated the query was attached to a message sent by the bot, the field message will be present. If the button was attached to a message sent via the bot (in inline mode), the field inline_message_id will be present. Exactly one of the fields data or game_short_name will be present.
  *
- * @package TelegramBot-Api
+ * @see https://core.telegram.org/bots/api#callbackquery Up-to-date description of this class
  * @author Sven Drewniok <sven.drewniok@web.de>
  * @author Sven Drewniok @Whitebock
- * @license https://opensource.org/licenses/MIT MIT License
  */
 class CallbackQuery
 {

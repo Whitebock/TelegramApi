@@ -1,22 +1,24 @@
 <?php
 
+/*
+ * This file is part of the Telegram Bot API wrapper.
+ *
+ * (c) Sven Drewniok <sven.drewniok@web.de>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Whitebock\TelegramApi;
 
 use Whitebock\TelegramApi\Sticker\Sticker;
 
 /**
- * Telegram Bot Api - PHP Wrapper
- * For an updated description of this class visit
- * https://core.telegram.org/bots/api#message
- *
- * Message Class
  * This object represents a message.
  *
- * @package TelegramBot-Api
- * @version 1.2
+ * @see https://core.telegram.org/bots/api#message Up-to-date description of this class
  * @author Sven Drewniok <sven.drewniok@web.de>
  * @author Sven Drewniok @Whitebock
- * @license https://opensource.org/licenses/MIT MIT License
  */
 class Message
 {

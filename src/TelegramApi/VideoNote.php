@@ -1,19 +1,22 @@
 <?php
 
+/*
+ * This file is part of the Telegram Bot API wrapper.
+ *
+ * (c) Sven Drewniok <sven.drewniok@web.de>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Whitebock\TelegramApi;
 
 /**
- * Telegram Bot Api - PHP Wrapper
- * For an updated description of this class visit
- * https://core.telegram.org/bots/api#voice
- *
- * VideoNote Class
  * This object represents a video message (available in Telegram apps as of v.4.0).
  *
- * @package TelegramBot-Api
+ * @see https://core.telegram.org/bots/api#videonote Up-to-date description of this class
  * @author Sven Drewniok <sven.drewniok@web.de>
  * @author Sven Drewniok @Whitebock
- * @license https://opensource.org/licenses/MIT MIT License
  */
 class VideoNote extends File
 {

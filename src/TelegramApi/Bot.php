@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Telegram Bot API wrapper.
+ *
+ * (c) Sven Drewniok <sven.drewniok@web.de>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Whitebock\TelegramApi;
 
 use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
@@ -9,20 +18,13 @@ use Symfony\Component\Serializer\Normalizer\PropertyNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Whitebock\TelegramApi\Exception\ApiException;
 
-
 /**
- * Telegram Bot Api - PHP Wrapper
- * For an updated list of all methods visit
- * https://core.telegram.org/bots/api#available-methods
- *
- * Bot Class
  * Object representing your bot, giving you access to all methods.
- * For examples visit https://github.com/Whitebock/TelegramBot-ApiWrapper
  *
- * @package TelegramBot-Api
+ * @see https://github.com/Whitebock/TelegramBot-ApiWrapper Example usage
+ * @see https://core.telegram.org/bots/api#available-methods Up-to-date list of all methods
  * @author Sven Drewniok <sven.drewniok@web.de>
  * @author Sven Drewniok @Whitebock
- * @license https://opensource.org/licenses/MIT MIT License
  */
 class Bot extends User
 {
@@ -84,6 +86,7 @@ class Bot extends User
     }
 
     /**
+     * Use this method to send text messages.
      * @param Chat $chat Target chat
      * @param string $text Text of the message to be sent
      * @param array $options [parse_mode=>string, disable_web_page_preview=>bool, disable_notification=>bool, reply_to_message_id=>int, reply_markup=>ReplyKeyboardMarkup|ReplyKeyboardHide|ForceReply]
@@ -108,6 +111,7 @@ class Bot extends User
     }
 
     /**
+     * Use this method to forward messages of any kind.
      * @param Chat $to Target chat
      * @param Chat $from Chat where the original message was sent
      * @param Message $message Message to forward
@@ -134,6 +138,7 @@ class Bot extends User
     }
 
     /**
+     * Use this method to send Media files. (Photos, Videos, etc.)
      * @param Chat $chat Target chat
      * @param File $file Media to send
      * @return Message The send Message object
@@ -154,6 +159,7 @@ class Bot extends User
     }
 
     /**
+     * Use this method to send point on the map.
      * @param Chat $chat Unique identifier for the target chat
      * @param float $latitude Latitude of location
      * @param float $longitude Longitude of location
@@ -179,6 +185,7 @@ class Bot extends User
     }
 
     /**
+     * Use this method to send information about a venue.
      * @param Chat $chat Target chat
      * @param float $latitude Latitude of the venue
      * @param float $longitude Longitude of venue
@@ -208,6 +215,7 @@ class Bot extends User
     }
 
     /**
+     * Use this method to send phone contacts.
      * @param Chat $chat Target chat
      * @param string $phone_number Contact's phone number
      * @param string $first_name Contact's first name
@@ -233,6 +241,8 @@ class Bot extends User
     }
 
     /**
+     * Use this method when you need to tell the user that something is happening on the bot's side.
+     * The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status).
      * @param Chat $chat Target chat
      * @param string $action Type of action to broadcast
      * @throws ApiException
@@ -247,6 +257,7 @@ class Bot extends User
     }
 
     /**
+     * Use this method to get a list of profile pictures for a user.
      * @param int $user_id Unique identifier of the target user
      * @param array $options [offset=>int, limit=>int]
      * @return UserProfilePhotos
@@ -266,7 +277,6 @@ class Bot extends User
 
     /**
      * Use this method to get basic info about a file and prepare it for downloading.
-     *
      * @param string $file_id File identifier to get info about
      * @return File
      * @throws ApiException
@@ -278,7 +288,7 @@ class Bot extends User
         $obj = json_decode($response);
 
         if ($obj === false) {
-            return false;
+            return null;
         }
 
         /**
@@ -291,6 +301,7 @@ class Bot extends User
     }
 
     /**
+     * Use this method to receive incoming updates using long polling.
      * @param array $options [offset=>int, limit=>int, timeout=>int]
      * @return Update[]
      * @throws ApiException
@@ -303,6 +314,7 @@ class Bot extends User
     }
 
     /**
+     * Use this for getting WebHook updates.
      * @return Update
      */
     public function getUpdate(): Update {
@@ -311,6 +323,7 @@ class Bot extends User
     }
 
     /**
+     * Use this method to specify a url and receive incoming updates via an outgoing webhook.
      * @param array $options [url=>string, certificate=>InputFile]
      * @return bool
      * @throws ApiException
