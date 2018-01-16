@@ -7,6 +7,7 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\Normalizer\PropertyNormalizer;
 use Symfony\Component\Serializer\Serializer;
+use Whitebock\TelegramApi\Exception\ApiException;
 
 
 /**
@@ -54,6 +55,7 @@ class Bot extends User
 
     /**
      * @return User Information about the bot in form of a User object
+     * @throws ApiException
      */
     public function getMe(): User
     {
@@ -86,6 +88,7 @@ class Bot extends User
      * @param string $text Text of the message to be sent
      * @param array $options [parse_mode=>string, disable_web_page_preview=>bool, disable_notification=>bool, reply_to_message_id=>int, reply_markup=>ReplyKeyboardMarkup|ReplyKeyboardHide|ForceReply]
      * @return Message The send Message object
+     * @throws ApiException
      */
     public function sendMessage(Chat $chat, string $text, array $options = null): Message
     {
@@ -110,6 +113,7 @@ class Bot extends User
      * @param Message $message Message to forward
      * @param array $options [disable_notification=>bool]
      * @return Message The send Message object
+     * @throws ApiException
      */
     public function forwardMessage(Chat $to, Chat $from, Message $message, $options = null): Message
     {
@@ -133,6 +137,7 @@ class Bot extends User
      * @param Chat $chat Target chat
      * @param File $file Media to send
      * @return Message The send Message object
+     * @throws ApiException
      */
     public function sendMedia(Chat $chat, File $file): Message
     {
@@ -154,6 +159,7 @@ class Bot extends User
      * @param float $longitude Longitude of location
      * @param array $options [disable_notification=>bool, reply_to_message_id=>int, reply_markup=>ReplyKeyboardMarkup|ReplyKeyboardHide|ForceReply]
      * @return Message The send Message object
+     * @throws ApiException
      */
     public function sendLocation(Chat $chat, float $latitude, float $longitude, array $options = null)
     {
@@ -180,6 +186,7 @@ class Bot extends User
      * @param string $address Address of the venue
      * @param array $options [foursquare_id=>string, disable_notification=>bool, reply_to_message_id=>int, reply_markup=>ReplyKeyboardMarkup|ReplyKeyboardHide|ForceReply]
      * @return Message The send Message object
+     * @throws ApiException
      */
     public function sendVenue(Chat $chat, float $latitude, float $longitude, string $title, string $address, array $options = null)
     {
@@ -206,6 +213,7 @@ class Bot extends User
      * @param string $first_name Contact's first name
      * @param array $options [last_name=>string, disable_notification=>bool, reply_to_message_id=>int, reply_markup=>ReplyKeyboardMarkup|ReplyKeyboardHide|ForceReply]
      * @return Message The send Message object
+     * @throws ApiException
      */
     public function sendContact(Chat $chat, string $phone_number, string $first_name, $options = null)
     {
@@ -227,6 +235,7 @@ class Bot extends User
     /**
      * @param Chat $chat Target chat
      * @param string $action Type of action to broadcast
+     * @throws ApiException
      */
     public function sendChatAction(Chat $chat, $action)
     {
@@ -241,6 +250,7 @@ class Bot extends User
      * @param int $user_id Unique identifier of the target user
      * @param array $options [offset=>int, limit=>int]
      * @return UserProfilePhotos
+     * @throws ApiException
      */
     public function getUserProfilePhotos($user_id, $options = null)
     {
@@ -259,6 +269,7 @@ class Bot extends User
      *
      * @param string $file_id File identifier to get info about
      * @return File
+     * @throws ApiException
      */
     public function getFile($file_id)
     {
@@ -282,6 +293,7 @@ class Bot extends User
     /**
      * @param array $options [offset=>int, limit=>int, timeout=>int]
      * @return Update[]
+     * @throws ApiException
      */
     public function getUpdates($options = [])
     {
@@ -291,8 +303,17 @@ class Bot extends User
     }
 
     /**
+     * @return Update
+     */
+    public function getUpdate(): Update {
+        $stream_data = file_get_contents('php://input');
+        return $this->serializer->deserialize($stream_data, Update::class, 'json');
+    }
+
+    /**
      * @param array $options [url=>string, certificate=>InputFile]
      * @return bool
+     * @throws ApiException
      */
     public function setWebHook($options = null)
     {
@@ -303,7 +324,7 @@ class Bot extends User
      * @param string $method
      * @param array $parameters
      * @return string
-     * @throws \Exception
+     * @throws ApiException
      */
     private function callAPI(string $method, array $parameters = []) {
         $curl = curl_init($this->url.$method);
@@ -318,13 +339,16 @@ class Bot extends User
         curl_close($curl);
 
         if (empty($json)) {
-            throw new \UnexpectedValueException("API call returned an empty response");
+            $e = new \UnexpectedValueException("Returned json string is empty");
+            throw new ApiException('API call returned an empty response', 0, $e);
         }
+
+
 
         $response = $this->serializer->decode($json, 'json');
 
         if (!$response['ok']) {
-            throw new \Exception($response['description'], $response['error_code']);
+            throw new ApiException($response['description'], $response['error_code']);
         }
         return $response['result'];
     }
