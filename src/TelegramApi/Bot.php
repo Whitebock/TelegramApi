@@ -124,7 +124,7 @@ class Bot extends User
         $params = [
           'chat_id' => $to->getId(),
           'from_chat_id' => $from->getId(),
-          'message_id' => $message->getMessageId()
+          'message_id' => $message->getId()
         ];
 
         if (isset($options)) {
@@ -133,7 +133,6 @@ class Bot extends User
         }
 
         $response = $this->callAPI('forwardMessage', $params);
-        //var_dump($response);
         return $this->serializer->denormalize($response, Message::class);
     }
 

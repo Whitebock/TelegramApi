@@ -63,18 +63,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### [Unreleased]
 ### Added
 - Composer files
-- Namespace
+- Namespaces
 - Getters & Fluent Setters
 - Method: callApi
+- Method: getUpdate
+- Method: sendMedia
 - Typehinting
 - Added StickerSet.php in new /Sticker/ Namespace
 - Added MaskPosition.php in new /Sticker/ Namespace
-- Added sendMedia
+- Added ApiException.php in new /exception/ Namespace
+- Copyright Header, better documentation
 ### Changed
 - Switched from private to protected variables
 - Changed deserialization from parseClass to symfony
 ### Removed
 - PhpDoc version annotation
+- PhpDoc package annotation
 - Method: sendPOSTRequest
 - Replaced sendPhoto
 - Replaced sendAudio
